@@ -23,7 +23,6 @@
 #include <report.h>
 #include <hardinfo.h>
 #include <iconcache.h>
-#include <stock.h>
 #include <vendor.h>
 #include <syncmanager.h>
 #include <gio/gio.h>
@@ -168,7 +167,6 @@ int main(int argc, char **argv)
     } else if (params.gui_running) {
 	/* initialize gui and start gtk+ main loop */
 	icon_cache_init();
-	stock_icons_init();
 
 	shell_init(modules);
 

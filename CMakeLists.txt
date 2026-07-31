@@ -754,7 +754,6 @@ add_executable(hardinfo2
 	shell/menu.c
 	shell/report.c
 	shell/shell.c
-	shell/stock.c
 	shell/syncmanager.c
 	shell/loadgraph-uber.c
 )
@@ -795,7 +794,6 @@ add_executable(hardinfo2
 	shell/menu.c
 	shell/report.c
 	shell/shell.c
-	shell/stock.c
 	shell/syncmanager.c
 	shell/loadgraph.c
 )

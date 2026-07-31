@@ -204,13 +204,6 @@ static time_t parse_boot_date(const char *str) {
     return 0;
 }
 
-static GtkWidget *search_entry = NULL;
-static GtkWidget *search_button = NULL;
-
-// state for "find next"
-static gchar *current_search_text = NULL;
-static GtkTreePath *last_search_path = NULL;
-static gboolean search_wrapped = FALSE;
 
 #ifndef G_VALUE_INIT
 #define G_VALUE_INIT {}
@@ -245,6 +238,11 @@ static gboolean check_node_for_search_match(GtkTreeModel *model, GtkTreeIter *it
     }
     return FALSE;
 }
+
+// state for "find next"
+static gchar *current_search_text = NULL;
+static GtkTreePath *last_search_path = NULL;
+static gboolean search_wrapped = FALSE;
 
 static void select_and_scroll_to_found_item(GtkWidget *tree_view, GtkTreeModel *model,
                                             GtkTreeIter *iter) {
@@ -354,51 +352,24 @@ static gboolean reset_search_background(gpointer data) {
     return FALSE; // Run only once
 }
 
-static void update_search_widgets_state(void) {
-    if (!search_entry || !search_button) return;
-
-    gboolean supported = is_search_supported_for_current_view();
-
-    gtk_widget_set_sensitive(search_entry, supported);
-    gtk_widget_set_sensitive(search_button, supported);
-
-    if (supported) {
-        gtk_widget_set_tooltip_text(search_entry, _("Enter text to search, double-click to select all"));
-    } else {
-        gtk_widget_set_tooltip_text(search_entry, _("Search not available"));
-    }
-}
-
-static gboolean is_search_supported_for_current_view(void) {
-    Shell *shell = shell_get_main_shell();
-
-    if (!shell)
-        return FALSE;
-
-    return (shell->view_type == SHELL_VIEW_NORMAL
-            || shell->view_type == SHELL_VIEW_DUAL
-            || shell->view_type == SHELL_VIEW_PROGRESS
-            || shell->view_type == SHELL_VIEW_PROGRESS_DUAL
-            || shell->view_type == SHELL_VIEW_LOAD_GRAPH);
-}
 
 static void on_search_clicked(GtkWidget *widget, gpointer data) {
-    if (!search_entry) return;
+    if (!shell->search_entry) return;
 
-    const gchar *search_text = gtk_entry_get_text(GTK_ENTRY(search_entry));
+    const gchar *search_text = gtk_entry_get_text(GTK_ENTRY(shell->search_entry));
     Shell *shell_ptr = shell_get_main_shell();
 
     if (shell_ptr) {
         if (shell_ptr->view_type == SHELL_VIEW_DETAIL) {
 #if GTK_CHECK_VERSION(3, 0, 0)
             GdkRGBA rgba = {1.0, 0.0, 0.0, 0.3};
-            gtk_widget_override_background_color(search_entry, GTK_STATE_FLAG_NORMAL, &rgba);
+            gtk_widget_override_background_color(shell->search_entry, GTK_STATE_FLAG_NORMAL, &rgba);
 #else
             GdkColor color = {0, 0xFFFF, 0xAAAA, 0xAAAA};
-            gtk_widget_modify_base(search_entry, GTK_STATE_NORMAL, &color);
+            gtk_widget_modify_base(shell->search_entry, GTK_STATE_NORMAL, &color);
 #endif
-            g_timeout_add(1000, reset_search_background, search_entry);
-            gtk_editable_select_region(GTK_EDITABLE(search_entry), 0, 0);
+            g_timeout_add(1000, reset_search_background, shell->search_entry);
+            gtk_editable_select_region(GTK_EDITABLE(shell->search_entry), 0, 0);
             return;
         }
     }
@@ -432,31 +403,60 @@ static void on_search_clicked(GtkWidget *widget, gpointer data) {
         if (!found) {
 #if GTK_CHECK_VERSION(3, 0, 0)
             GdkRGBA rgba = {1.0, 0.0, 0.0, 0.15};
-            gtk_widget_override_background_color(search_entry, GTK_STATE_FLAG_NORMAL, &rgba);
+            gtk_widget_override_background_color(shell->search_entry, GTK_STATE_FLAG_NORMAL, &rgba);
 #else
             GdkColor color = {0, 0xFFFF, 0xCCCC, 0xCCCC};
-            gtk_widget_modify_base(search_entry, GTK_STATE_NORMAL, &color);
+            gtk_widget_modify_base(shell->search_entry, GTK_STATE_NORMAL, &color);
 #endif
-            g_timeout_add(1000, reset_search_background, search_entry);
+            g_timeout_add(1000, reset_search_background, shell->search_entry);
         } else {
 #if GTK_CHECK_VERSION(3, 0, 0)
             GdkRGBA rgba = {0.0, 1.0, 0.0, 0.1};
-            gtk_widget_override_background_color(search_entry, GTK_STATE_FLAG_NORMAL, &rgba);
+            gtk_widget_override_background_color(shell->search_entry, GTK_STATE_FLAG_NORMAL, &rgba);
 #else
             GdkColor color = {0, 0xAAAA, 0xFFFF, 0xAAAA};
-            gtk_widget_modify_base(search_entry, GTK_STATE_NORMAL, &color);
+            gtk_widget_modify_base(shell->search_entry, GTK_STATE_NORMAL, &color);
 #endif
-            g_timeout_add(1000, reset_search_background, search_entry);
+            g_timeout_add(1000, reset_search_background, shell->search_entry);
         }
 
-        gtk_editable_select_region(GTK_EDITABLE(search_entry), 0, 0);
+        gtk_editable_select_region(GTK_EDITABLE(shell->search_entry), 0, 0);
     }
 }
 
+static void update_search_widgets_state(void) {
+    if (!shell->search_entry || !shell->search_button) return;
+
+    gboolean supported = is_search_supported_for_current_view();
+
+    gtk_widget_set_sensitive(shell->search_entry, supported);
+    gtk_widget_set_sensitive(shell->search_button, supported);
+
+    if (supported) {
+        gtk_widget_set_tooltip_text(shell->search_entry, _("Enter text to search, double-click to select all"));
+    } else {
+        gtk_widget_set_tooltip_text(shell->search_entry, _("Search not available"));
+    }
+}
+
+static gboolean is_search_supported_for_current_view(void) {
+    Shell *shell = shell_get_main_shell();
+
+    if (!shell)
+        return FALSE;
+
+    return (shell->view_type == SHELL_VIEW_NORMAL
+            || shell->view_type == SHELL_VIEW_DUAL
+            || shell->view_type == SHELL_VIEW_PROGRESS
+            || shell->view_type == SHELL_VIEW_PROGRESS_DUAL
+            || shell->view_type == SHELL_VIEW_LOAD_GRAPH);
+}
+
+
 static gboolean on_search_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data) {
     if ((event->keyval == 'f' || event->keyval == 'F') && (event->state & GDK_CONTROL_MASK)) {
-        if (search_entry) {
-            gtk_widget_grab_focus(search_entry);
+        if (shell->search_entry) {
+            gtk_widget_grab_focus(shell->search_entry);
             return TRUE;
         }
     }
@@ -494,12 +494,16 @@ Shell *shell_get_main_shell(void)
 
 void shell_ui_manager_set_visible(const gchar * path, gboolean setting)
 {
-    GtkWidget *widget;
+    GtkWidget *widget = NULL;
 
     if (!params.gui_running)
 	return;
 
-    widget = gtk_ui_manager_get_widget(shell->ui_manager, path);
+    /* Direct widget references for common paths */
+    if (g_strcmp0(path, "/MainMenuBarAction") == 0) {
+        widget = shell->toolbar_widget;
+    }
+
     if (!widget)
 	return;
 
@@ -525,19 +529,19 @@ void shell_clear_timeouts(Shell *shell)
 void shell_action_set_property(const gchar * action_name,
 			       const gchar * property, gboolean setting)
 {
-    GtkAction *action;
+    GtkWidget *widget;
 
-    if (!params.gui_running)
+    if (!params.gui_running || !shell)
 	return;
 
-    action = gtk_action_group_get_action(shell->action_group, action_name);
-    if (action) {
+    widget = g_hash_table_lookup(shell->action_widget_map, action_name);
+    if (widget) {
 	GValue value = { 0 };
 
 	g_value_init(&value, G_TYPE_BOOLEAN);
 	g_value_set_boolean(&value, setting);
 
-	g_object_set_property(G_OBJECT(action), property, &value);
+	g_object_set_property(G_OBJECT(widget), property, &value);
 
 	g_value_unset(&value);
     }
@@ -545,42 +549,47 @@ void shell_action_set_property(const gchar * action_name,
 
 void shell_action_set_label(const gchar * action_name, gchar * label)
 {
-#if GTK_CHECK_VERSION(2,16,0)
-  if (params.gui_running && shell->action_group) {
-	GtkAction *action;
+    GtkWidget *widget;
 
-	action = gtk_action_group_get_action(shell->action_group, action_name);
-	if (action) gtk_action_set_label(action, label);
+    if (!params.gui_running || !shell) return;
+
+    widget = g_hash_table_lookup(shell->action_widget_map, action_name);
+    if (widget && GTK_IS_MENU_ITEM(widget)) {
+        g_object_set(G_OBJECT(widget), "label", label, NULL);
     }
-#endif
 }
 
 void shell_action_set_enabled(const gchar * action_name, gboolean setting)
 {
-  if (params.gui_running && shell->action_group) {
-	GtkAction *action;
+    GtkWidget *widget;
 
-	action = gtk_action_group_get_action(shell->action_group, action_name);
-	if (action) gtk_action_set_sensitive(action, setting);
+    if (!params.gui_running || !shell)
+	return;
+
+    widget = g_hash_table_lookup(shell->action_widget_map, action_name);
+    if (widget) {
+	gtk_widget_set_sensitive(widget, setting);
     }
 }
 
 gboolean shell_action_get_enabled(const gchar * action_name)
 {
-    GtkAction *action;
+    GtkWidget *widget;
 
-    if (!params.gui_running)
+    if (!params.gui_running || !shell)
 	return FALSE;
 
-    action = gtk_action_group_get_action(shell->action_group, action_name);
-    if (action) return gtk_action_get_sensitive(action);
+    widget = g_hash_table_lookup(shell->action_widget_map, action_name);
+    if (widget) {
+        return gtk_widget_is_sensitive(widget);
+    }
 
     return FALSE;
 }
 
 void shell_set_side_pane_visible(gboolean setting)
 {
-    if (!params.gui_running)
+    if (!params.gui_running || !shell->tree)
 	return;
 
     if (setting)
@@ -591,24 +600,19 @@ void shell_set_side_pane_visible(gboolean setting)
 
 gboolean shell_action_get_active(const gchar * action_name)
 {
-    GtkAction *action;
-    GSList *proxies;
+    GtkWidget *widget;
 
-    if (!params.gui_running) return FALSE;
+    if (!params.gui_running || !shell) return FALSE;
 
-    action = gtk_action_group_get_action(shell->action_group, action_name);
-    if (action) {
-	proxies = gtk_action_get_proxies(action);
+    widget = g_hash_table_lookup(shell->action_widget_map, action_name);
+    if (widget && GTK_IS_CHECK_MENU_ITEM(widget)) {
+	return gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
+    }
 
-	for (; proxies; proxies = proxies->next) {
-	    GtkWidget *widget = (GtkWidget *) proxies->data;
-
-	    if (GTK_IS_CHECK_MENU_ITEM(widget)) {
-		return
-		    gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM
-						   (widget));
-	    }
-	}
+    /* Also check for radio menu items */
+    if (widget && GTK_IS_RADIO_MENU_ITEM(widget)) {
+        return gtk_check_menu_item_get_active (GTK_CHECK_MENU_ITEM (widget));
+        //return gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
     }
 
     return FALSE;
@@ -616,24 +620,19 @@ gboolean shell_action_get_active(const gchar * action_name)
 
 void shell_action_set_active(const gchar * action_name, gboolean setting)
 {
-    GtkAction *action;
-    GSList *proxies;
+    GtkWidget *widget;
 
-    if (!params.gui_running) return;
+    if (!params.gui_running || !shell) return;
 
-    action = gtk_action_group_get_action(shell->action_group, action_name);
-    if (action) {
-	proxies = gtk_action_get_proxies(action);
+    widget = g_hash_table_lookup(shell->action_widget_map, action_name);
+    if (widget && GTK_IS_CHECK_MENU_ITEM(widget)) {
+        gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(widget), setting);
+    }
 
-	for (; proxies; proxies = proxies->next) {
-	    GtkWidget *widget = (GtkWidget *) proxies->data;
-
-	    if (GTK_IS_CHECK_MENU_ITEM(widget)) {
-		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(widget),
-					       setting);
-		return;
-	    }
-	}
+    /* Also handle radio menu items */
+    if (widget && GTK_IS_RADIO_MENU_ITEM(widget)) {
+        gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (widget), setting);
+        //gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), setting);
     }
 }
 
@@ -1004,33 +1003,10 @@ static void create_window(void)
     menu_init(shell);
 
     g_signal_connect(G_OBJECT(shell->window), "key-press-event", G_CALLBACK(on_search_key_press), NULL);
+    g_signal_connect(G_OBJECT(shell->search_entry), "activate", G_CALLBACK(on_search_clicked), NULL);
+    g_signal_connect(G_OBJECT(shell->search_button), "clicked", G_CALLBACK(on_search_clicked), NULL);
 
-    GtkWidget *toolbar = gtk_ui_manager_get_widget(shell->ui_manager, "/MainMenuBarAction");
-
-    if (toolbar && GTK_IS_TOOLBAR(toolbar)) {
-        GtkToolItem *separator = gtk_separator_tool_item_new();
-        gtk_separator_tool_item_set_draw(GTK_SEPARATOR_TOOL_ITEM(separator), FALSE);
-        gtk_tool_item_set_expand(separator, TRUE);
-        gtk_toolbar_insert(GTK_TOOLBAR(toolbar), separator, -1);
-        gtk_widget_show(GTK_WIDGET(separator));
-
-        search_entry = gtk_entry_new();
-        gtk_widget_set_size_request(search_entry, 150, -1);
-        GtkToolItem *entry_item = gtk_tool_item_new();
-        gtk_container_add(GTK_CONTAINER(entry_item), search_entry);
-        gtk_toolbar_insert(GTK_TOOLBAR(toolbar), entry_item, -1);
-        gtk_widget_show_all(GTK_WIDGET(entry_item));
-        g_signal_connect(G_OBJECT(search_entry), "activate", G_CALLBACK(on_search_clicked), NULL);
-
-        search_button = gtk_button_new_with_label(_("Search"));
-        GtkToolItem *button_item = gtk_tool_item_new();
-        gtk_container_add(GTK_CONTAINER(button_item), search_button);
-        gtk_toolbar_insert(GTK_TOOLBAR(toolbar), button_item, -1);
-        gtk_widget_show_all(GTK_WIDGET(button_item));
-        g_signal_connect(G_OBJECT(search_button), "clicked", G_CALLBACK(on_search_clicked), NULL);
-
-        update_search_widgets_state();
-    }
+    update_search_widgets_state();
 
 #if GTK_CHECK_VERSION(3, 0, 0)
     hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
@@ -1689,13 +1665,6 @@ void shell_init(GSList * modules)
 
     create_window();
 
-    //shell_action_set_property("CopyAction", "is-important", TRUE);
-    shell_action_set_property("RefreshAction", "is-important", TRUE);
-    shell_action_set_property("ReportAction", "is-important", TRUE);
-    shell_action_set_property("SyncManagerAction", "is-important", TRUE);
-    shell_action_set_property("UpdateAction", "is-important", TRUE);
-
-
     path = g_build_filename(g_get_user_config_dir(), "hardinfo2","blobs-update-version.json", NULL);
     fd = open(path,O_RDONLY);
     if(fd>=0){
@@ -1718,11 +1687,11 @@ void shell_init(GSList * modules)
     }
     g_free(path);
     if(sscanf(VERSION,"%u.%u.%u",&a1,&a2,&a3)==3) app_ver=a1*10000+a2*100+a3;
-    if(app_ver && (latest_ver > app_ver)){
-        shell_action_set_property("UpdateAction", "visible-horizontal", TRUE);
-    } else {
-        shell_action_set_property("UpdateAction", "visible-horizontal", FALSE);
-    }
+    /* Show update button if newer version is available */
+    if (latest_ver > app_ver)
+	shell_action_set_property("UpdateAction", "visible-horizontal", TRUE);
+    else
+	shell_action_set_property("UpdateAction", "visible-horizontal", FALSE);
 
 #if GTK_CHECK_VERSION(3, 0, 0)
     shell_action_set_property("DisableThemeAction", "draw-as-radio", TRUE);
@@ -3077,8 +3046,8 @@ static void module_selected(gpointer data)
         shell_status_set_enabled(FALSE);
 
         /* clear search text when module changes */
-        if (module_changed && search_entry) {
-            gtk_entry_set_text(GTK_ENTRY(search_entry), "");
+        if (module_changed && shell->search_entry) {
+            gtk_entry_set_text(GTK_ENTRY(shell->search_entry), "");
         }
     } else {
         shell_status_set_enabled(TRUE);

@@ -94,9 +94,24 @@ struct _Shell {
     DetailView		*detail_view;
     LoadGraph		*loadgraph;
 
-    GtkActionGroup	*action_group;
-    GtkUIManager	*ui_manager;
-    GSList		*merge_ids;
+    GtkWidget         *menubar;                 /* GtkMenuBar */
+    GtkWidget         *toolbar_widget;          /* Main toolbar */
+
+    /* Menu item references for direct access */
+    GtkWidget         *menu_report;             /* Generate Report */
+    GtkWidget         *menu_sync;               /* Synchronize */
+    GtkWidget         *menu_quit;               /* Quit */
+    GtkWidget         *menu_refresh;            /* Refresh */
+    GtkWidget         *menu_side_pane;          /* Side Pane toggle */
+    GtkWidget         *menu_toolbar;            /* Toolbar toggle */
+
+    GtkWidget         *search_entry;
+    GtkWidget         *search_button;
+
+    /* Theme radio group (GTK 3.20+) */
+    GSList            *theme_radio_group;       /* Theme radio button group */
+
+    GHashTable        *action_widget_map;       /* action_name -> widget mapping */
 
     ShellViewType	 view_type;
     gboolean		 normalize_percentage;

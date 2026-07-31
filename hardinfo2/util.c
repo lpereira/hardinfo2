@@ -668,7 +668,7 @@ static void module_unload(ShellModule * module)
 void module_unload_all(GSList *modules)
 {
     Shell *shell;
-    GSList *module, *merge_id;
+    GSList *module;
 
     shell = shell_get_main_shell();
 
@@ -684,14 +684,9 @@ void module_unload_all(GSList *modules)
     }
     g_slist_free(modules);
 
-    if(params.gui_running && shell && shell->merge_ids){
-        for (merge_id = shell->merge_ids; merge_id; merge_id = merge_id->next) {
-          gtk_ui_manager_remove_ui(shell->ui_manager, GPOINTER_TO_INT(merge_id->data));
-        }
-        g_slist_free(shell->merge_ids);
-	shell->merge_ids = NULL;
-	shell->tree->modules = NULL;
-	shell->selected = NULL;
+    if(shell) {
+        shell->tree->modules = NULL;
+        shell->selected = NULL;
     }
 }
 
