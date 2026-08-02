@@ -72,7 +72,7 @@ unsigned int cpubits_count(guint64 *base){
        if(*(base+i)) {
 	   int t=0;
 	   while(t<64) {
-	       if(*(base+i) & (1L<<t)) count++;
+	       if(*(base+i) & (1UL<<t)) count++;
 	       t++;
 	   }
        }
