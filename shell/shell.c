@@ -1475,9 +1475,76 @@ static void copy_all_rows_to_clipboard(GtkWidget *menu_item, gpointer user_data)
  * the operation to avoid flicker, following the same pattern as
  * reload_section(). */
 
+/* Paint the shell's themed background image (bg<theme>_<light|dark>.jpg)
+ * scaled to fill (width, height), matching the windows.css
+ * "background-size:100% 100%" rule. Returns TRUE when a theme background was
+ * painted so the caller can skip its solid-color fallback; FALSE when no
+ * theme is active (params.theme <= 0) or the image could not be loaded. */
+static gboolean
+shell_screenshot_paint_theme_background(cairo_t *cr, gint width, gint height)
+{
+    if (params.theme <= 0)
+        return FALSE;
+
+    gchar *name = g_strdup_printf("bg%d_%s.jpg", params.theme,
+                                  params.darkmode ? "dark" : "light");
+    gchar *path = g_build_filename(params.path_data, "pixmaps", name, NULL);
+    g_free(name);
+
+    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(path, NULL);
+    g_free(path);
+    if (!pixbuf)
+        return FALSE;
+
+    cairo_surface_t *img = gdk_cairo_surface_create_from_pixbuf(pixbuf, 1, NULL);
+    g_object_unref(pixbuf);
+    if (!img) {
+        g_warning("Could not create surface from theme background");
+        return FALSE;
+    }
+
+    gdouble iw = (gdouble)cairo_image_surface_get_width(img);
+    gdouble ih = (gdouble)cairo_image_surface_get_height(img);
+    if (iw > 0 && ih > 0) {
+        cairo_save(cr);
+        cairo_scale(cr, (gdouble)width / iw, (gdouble)height / ih);
+        cairo_set_source_surface(cr, img, 0, 0);
+        cairo_paint(cr);
+        cairo_restore(cr);
+    }
+    cairo_surface_destroy(img);
+    return TRUE;
+}
+
+/* Resolve the background color that sits behind a (transparent) inner widget:
+ * the shell window's own background color, or its theme_base_color. Returns
+ * TRUE and sets *out when an opaque window-level background color is found. */
+static gboolean
+shell_screenshot_window_background_color(GdkRGBA *out)
+{
+    GtkStyleContext *sctx = shell ? gtk_widget_get_style_context(shell->window) : NULL;
+    if (!sctx)
+        return FALSE;
+
+    gtk_style_context_get_background_color(sctx, GTK_STATE_FLAG_NORMAL, out);
+    if (out->alpha >= 0.5)
+        return TRUE;
+
+    /* Some themes paint the window backdrop via ./theme_base_color rather than
+     * an explicit background-color on the window widget. */
+    if (gtk_style_context_lookup_color(sctx, "theme_base_color", out) &&
+        out->alpha >= 0.5)
+        return TRUE;
+
+    return FALSE;
+}
+
 /* Render widget at (width, height) to a new cairo surface. If bg_override is
  * non-NULL, use it as the background; otherwise query the widget's own style
- * context, falling back to white when the queried color is transparent. */
+ * context, falling back to white when the queried color is transparent. When a
+ * theme is active, the theme background image is painted first so the
+ * (possibly semi-transparent) widget background blends over it as in the real
+ * window. */
 static cairo_surface_t *
 shell_screenshot_render_widget(GtkWidget *widget, gint width, gint height,
                                 const GdkRGBA *bg_override)
@@ -1492,21 +1559,30 @@ shell_screenshot_render_widget(GtkWidget *widget, gint width, gint height,
 
     cairo_t *cr = cairo_create(surface);
 
-    GdkRGBA bg;
-    if (bg_override) {
-        bg = *bg_override;
-    } else {
-        bg.red = bg.green = bg.blue = 1.0;
-        bg.alpha = 1.0;
-        GtkStyleContext *ctx = gtk_widget_get_style_context(widget);
-        gtk_style_context_get_background_color(ctx, GTK_STATE_FLAG_NORMAL, &bg);
-        if (bg.alpha < 0.5) {
+    if (!shell_screenshot_paint_theme_background(cr, width, height)) {
+        GdkRGBA bg;
+        if (bg_override) {
+            bg = *bg_override;
+        } else {
             bg.red = bg.green = bg.blue = 1.0;
             bg.alpha = 1.0;
+            /* When no theme image is active (theme disabled), the scrolled
+             * windows / treeviews have their backgrounds unset so the window's
+             * own background color shows through. Prefer that window-level
+             * background color; otherwise fall back to the widget's own
+             * background, then white. */
+            if (!shell_screenshot_window_background_color(&bg)) {
+                GtkStyleContext *ctx = gtk_widget_get_style_context(widget);
+                gtk_style_context_get_background_color(ctx, GTK_STATE_FLAG_NORMAL, &bg);
+                if (bg.alpha < 0.5) {
+                    bg.red = bg.green = bg.blue = 1.0;
+                    bg.alpha = 1.0;
+                }
+            }
         }
+        cairo_set_source_rgb(cr, bg.red, bg.green, bg.blue);
+        cairo_paint(cr);
     }
-    cairo_set_source_rgb(cr, bg.red, bg.green, bg.blue);
-    cairo_paint(cr);
 
     gtk_widget_draw(widget, cr);
     cairo_destroy(cr);
@@ -1531,12 +1607,18 @@ shell_screenshot_capture_scrolled_widget(GtkWidget *scrolled_window,
     if (nat_w > width)
         width = nat_w;
 
+    /* Only treat the widget's own background as authoritative when it is
+     * actually opaque. Otherwise (fully transparent background — e.g. the
+     * treeviews when the custom theme is disabled) pass NULL so the renderer
+     * uses the theme image / shell-window background color, which is what the
+     * user actually sees behind the widget. */
     GdkRGBA bg;
-    GtkStyleContext *ctx = gtk_widget_get_style_context(inner_widget);
-    gtk_style_context_get_background_color(ctx, GTK_STATE_FLAG_NORMAL, &bg);
-    if (bg.alpha < 0.5) {
-        bg.red = bg.green = bg.blue = 1.0;
-        bg.alpha = 1.0;
+    gboolean bg_opaque = FALSE;
+    {
+        GtkStyleContext *ctx = gtk_widget_get_style_context(inner_widget);
+        gtk_style_context_get_background_color(ctx, GTK_STATE_FLAG_NORMAL, &bg);
+        if (bg.alpha >= 0.5)
+            bg_opaque = TRUE;
     }
 
     gint nat_h = 0;
@@ -1584,7 +1666,7 @@ shell_screenshot_capture_scrolled_widget(GtkWidget *scrolled_window,
 
         gtk_widget_size_allocate(inner_widget, &full_alloc);
 
-        surface = shell_screenshot_render_widget(inner_widget, width, nat_h, &bg);
+        surface = shell_screenshot_render_widget(inner_widget, width, nat_h, bg_opaque ? &bg : NULL);
 
         gtk_widget_size_allocate(inner_widget, &orig_alloc);
         if (had_v)
@@ -1609,7 +1691,7 @@ shell_screenshot_capture_scrolled_widget(GtkWidget *scrolled_window,
         while (safety-- > 0 && gtk_events_pending())
             gtk_main_iteration_do(FALSE);
 
-        surface = shell_screenshot_render_widget(inner_widget, width, nat_h, &bg);
+        surface = shell_screenshot_render_widget(inner_widget, width, nat_h, bg_opaque ? &bg : NULL);
 
         if (vadj) {
             gtk_adjustment_set_page_size(vadj, saved_page);
@@ -1659,10 +1741,17 @@ shell_screenshot_concat_vertical(cairo_surface_t *top, cairo_surface_t *bottom)
         return NULL;
     }
     cairo_t *cr = cairo_create(result);
-    /* Fill white: top/bottom widths can differ by a scrollbar — padding would
-     * be transparent and render black in many clipboard consumers. */
-    cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
-    cairo_paint(cr);
+    /* Fill background: top/bottom widths can differ by a scrollbar — padding
+     * would be transparent and render black in many clipboard consumers. When
+     * a theme is active use the theme background image; otherwise use the
+     * shell window's background color so padding and any transparent part
+     * match the window background. */
+    if (!shell_screenshot_paint_theme_background(cr, max_w, total_h)) {
+        GdkRGBA bg = { .red = 1.0, .green = 1.0, .blue = 1.0, .alpha = 1.0 };
+        shell_screenshot_window_background_color(&bg);
+        cairo_set_source_rgb(cr, bg.red, bg.green, bg.blue);
+        cairo_paint(cr);
+    }
     cairo_set_source_surface(cr, top, 0, 0);
     cairo_paint(cr);
     cairo_set_source_surface(cr, bottom, 0, th);
