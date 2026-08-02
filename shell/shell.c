@@ -39,7 +39,6 @@
 #include "syncmanager.h"
 #include "iconcache.h"
 #include "menu.h"
-#include "stock.h"
 #include "uri_handler.h"
 
 #include "callbacks.h"
