@@ -18,6 +18,7 @@
  */
 
 #include <string.h>
+#include <stdlib.h>
 #include "hardinfo.h"
 #include "cpu_util.h"
 

@@ -18,6 +18,7 @@
 
 #include <string.h>
 #include <time.h>
+#include <stdlib.h>
 
 #include "hardinfo.h"
 #include "devices.h"

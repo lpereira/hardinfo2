@@ -19,7 +19,7 @@
 
 #include <config.h>
 #include <shell.h>
-
+#include <stdlib.h>
 #include <report.h>
 #include <hardinfo.h>
 #include <iconcache.h>

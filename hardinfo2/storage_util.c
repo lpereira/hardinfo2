@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "udisks2_util.h"
 #include "storage_util.h"
 #include "util_ids.h"

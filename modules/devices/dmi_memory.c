@@ -21,6 +21,7 @@
 
 #include "hardinfo.h"
 #include <ctype.h>
+#include <stdlib.h>
 #include "devices.h"
 #include "vendor.h"
 #include <inttypes.h>

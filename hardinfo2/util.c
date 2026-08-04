@@ -28,7 +28,7 @@
  */
 
 #include <config.h>
-
+#include <stdlib.h>
 #include <report.h>
 #include <string.h>
 #include <shell.h>

@@ -18,6 +18,7 @@
 
 #include <gdk/gdkx.h>
 #include <string.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <sys/utsname.h>
 #include "hardinfo.h"

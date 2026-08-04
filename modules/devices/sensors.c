@@ -23,6 +23,7 @@
 #include "hardinfo.h"
 #include "socket.h"
 #include "udisks2_util.h"
+#include <stdlib.h>
 
 #if defined(HAS_LIBSENSORS) && HAS_LIBSENSORS
 #include <sensors/sensors.h>

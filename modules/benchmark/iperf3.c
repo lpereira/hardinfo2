@@ -20,6 +20,7 @@
 #include "benchmark.h"
 #include <json-glib/json-glib.h>
 #include <math.h>
+#include <stdlib.h>
 
 static int iperf3_version() {
     int ret = -1.0;

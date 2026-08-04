@@ -21,6 +21,7 @@
 #include "hardinfo.h"
 #include "x_util.h"
 #include <X11/Xlib.h>
+#include <stdlib.h>
 
 /* wayland stuff lives here for now */
 
