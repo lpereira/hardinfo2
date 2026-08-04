@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hardinfo2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-24 22:26+0800\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2025-04-22 14:27+0800\n"
 "Last-Translator: 秦凡东 <qinfandong@kylinos.cn>\n"
 "Language-Team: Chinese\n"
@@ -508,68 +508,26 @@ msgstr ""
 "您应该随同本程序收到一份 GNU 通用公共许可证的副本；如果没有，请写信给自由软件"
 "基金会，地址为 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA"
 
-msgid "_Information"
-msgstr "信息（_I）"
-
-msgid "_View"
-msgstr "查看（_V）"
-
-msgid "_Theme"
-msgstr "主题（_T）"
-
-msgid "_Help"
-msgstr "帮助（_H）"
-
 msgid "Generate _Report"
 msgstr "生成报表（_R）"
-
-msgid "Generates a report with detailed system information"
-msgstr "生成一份包含详细系统信息的报告"
 
 msgid "Synchronize"
 msgstr "同步"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr "发送基准测试结果并通过网络更新数据"
-
-msgid "Update Available"
-msgstr "可更新"
-
-msgid "_Refresh"
-msgstr "刷新（_R）"
-
-msgid "HardInfo2 _Web Site"
-msgstr "HardInfo2 网站（_W）"
-
-msgid "_Help - User Guide"
-msgstr "用户手册（_H）"
-
-msgid "_Update HardInfo2"
-msgstr "升级 HardInfo2（_U）"
-
-msgid "_Report bug"
-msgstr "报告错误（_B）"
-
-msgid "_About HardInfo2"
-msgstr "关于 HardInfo2（_A）"
-
-msgid "Displays program version information"
-msgstr "显示程序版本信息"
+msgid "Synchronize on startup"
+msgstr "启动时同步"
 
 msgid "_Quit"
 msgstr "退出（_Q）"
 
-msgid "_Side Pane"
-msgstr "侧边栏（_S）"
-
-msgid "Toggles side pane visibility"
-msgstr "更改侧边栏的可见性"
+msgid "_Side Panel"
+msgstr "侧边栏"
 
 msgid "_Toolbar"
 msgstr "工具栏（_T）"
 
-msgid "Synchronize on startup"
-msgstr "启动时同步"
+msgid "_Theme"
+msgstr "主题（_T）"
 
 msgid "Disable Theme"
 msgstr "禁用主题"
@@ -591,6 +549,45 @@ msgstr "PixArt 主题"
 
 msgid "Theme Silicon"
 msgstr "Silicon 主题"
+
+msgid "_Refresh"
+msgstr "刷新（_R）"
+
+msgid "HardInfo2 _Web Site"
+msgstr "HardInfo2 网站（_W）"
+
+msgid "_Help - User Guide"
+msgstr "用户手册（_H）"
+
+msgid "_Update HardInfo2"
+msgstr "升级 HardInfo2（_U）"
+
+msgid "_Report bug"
+msgstr "报告错误（_B）"
+
+msgid "_About HardInfo2"
+msgstr "关于 HardInfo2（_A）"
+
+msgid "_Information"
+msgstr "信息（_I）"
+
+msgid "_View"
+msgstr "查看（_V）"
+
+msgid "_Help"
+msgstr "帮助（_H）"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "Report"
+msgstr "报告。"
+
+msgid "Update"
+msgstr "更新。"
+
+msgid "Search"
+msgstr "搜索"
 
 msgid "Save File"
 msgstr "保存文件"
@@ -654,9 +651,6 @@ msgstr "基准测试"
 msgid "%s - System Information and Benchmark"
 msgstr "%s - 系统信息和基准测试"
 
-msgid "Search"
-msgstr "搜索"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -675,11 +669,20 @@ msgstr ""
 "\n"
 "请通过手动安装修复"
 
+msgid "Picture copied to clipboard"
+msgstr "图片已复制到剪贴板。"
+
+msgid "Could not capture picture"
+msgstr "无法拍摄照片。"
+
 msgid "Copy selected row"
 msgstr "复制所选行"
 
 msgid "Copy all rows"
 msgstr "复制全部行"
+
+msgid "Copy as picture"
+msgstr "复制为图片。"
 
 msgid "Copy all text"
 msgstr "复制全部文本"
@@ -3151,9 +3154,6 @@ msgstr "接口信号电平"
 msgid "Configuration type"
 msgstr "配置类型"
 
-msgid "Refresh"
-msgstr "刷新"
-
 msgid "Timings"
 msgstr "时序"
 
@@ -4163,8 +4163,8 @@ msgstr "字节交换后移动数据指令"
 #. !/flag:popcnt
 msgctxt "x86-flag"
 msgid ""
-"Return the Count of Number of Bits Set to 1 instruction (Hamming weight, "
-"i.e. bit count)"
+"Return the Count of Number of Bits Set to 1 instruction (Hamming weight, i."
+"e. bit count)"
 msgstr "返回设置为 1 的位数计数指令（汉明权重，即位计数）"
 
 msgctxt "x86-flag"

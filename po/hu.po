@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hardinfo2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 13:18+0200\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2024-05-20 13:19+0200\n"
 "Last-Translator: ViBE <vibe@protonmail.com>\n"
 "Language-Team: Hungarian <vibe@protonmail.com>\n"
@@ -524,69 +524,26 @@ msgstr ""
 "volna kapnia; ha ez nem történt meg, írjon a Free Software Foundation, Inc.-"
 "nek, 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA címre"
 
-msgid "_Information"
-msgstr "_Információ"
-
-msgid "_View"
-msgstr "_Nézet"
-
-msgid "_Theme"
-msgstr "Téma"
-
-msgid "_Help"
-msgstr "_Súgó"
-
 msgid "Generate _Report"
 msgstr "_Jelentés"
-
-msgid "Generates a report with detailed system information"
-msgstr "Létrehoz egy részletes rendszerinformációt tartalmazó jelentést"
 
 msgid "Synchronize"
 msgstr "Feltöltés"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr ""
-"Küldje el a teszteredményeket, és fogadjon frissített adatokat a hálózatból"
-
-msgid "Update Available"
-msgstr "Frissítés elérhető"
-
-msgid "_Refresh"
-msgstr "_Frissítés"
-
-msgid "HardInfo2 _Web Site"
-msgstr "HardInfo2 – weboldal"
-
-msgid "_Help - User Guide"
-msgstr "Súgó – Felhasználói kézikönyv"
-
-msgid "_Update HardInfo2"
-msgstr "_Frissítse a HardInfo2-t_"
-
-msgid "_Report bug"
-msgstr "_Hibabejelentés"
-
-msgid "_About HardInfo2"
-msgstr "_Névjegy"
-
-msgid "Displays program version information"
-msgstr "Megjeleníti a program verzióját"
+msgid "Synchronize on startup"
+msgstr "Feltöltés indításkor"
 
 msgid "_Quit"
 msgstr "_Kilépés"
 
-msgid "_Side Pane"
-msgstr "_Oldalsáv"
-
-msgid "Toggles side pane visibility"
-msgstr "A melléktábla láthatóságának be- és kikapcsolása"
+msgid "_Side Panel"
+msgstr "_Oldalsáv_"
 
 msgid "_Toolbar"
 msgstr "_Eszköztár"
 
-msgid "Synchronize on startup"
-msgstr "Feltöltés indításkor"
+msgid "_Theme"
+msgstr "Téma"
 
 msgid "Disable Theme"
 msgstr "A téma kikapcsolása"
@@ -608,6 +565,45 @@ msgstr "Téma: PixArt"
 
 msgid "Theme Silicon"
 msgstr "Téma: Szilícium"
+
+msgid "_Refresh"
+msgstr "_Frissítés"
+
+msgid "HardInfo2 _Web Site"
+msgstr "HardInfo2 – weboldal"
+
+msgid "_Help - User Guide"
+msgstr "Súgó – Felhasználói kézikönyv"
+
+msgid "_Update HardInfo2"
+msgstr "_Frissítse a HardInfo2-t_"
+
+msgid "_Report bug"
+msgstr "_Hibabejelentés"
+
+msgid "_About HardInfo2"
+msgstr "_Névjegy"
+
+msgid "_Information"
+msgstr "_Információ"
+
+msgid "_View"
+msgstr "_Nézet"
+
+msgid "_Help"
+msgstr "_Súgó"
+
+msgid "Refresh"
+msgstr "Frissít"
+
+msgid "Report"
+msgstr "Jelentés"
+
+msgid "Update"
+msgstr "Frissítés"
+
+msgid "Search"
+msgstr "Keresés"
 
 msgid "Save File"
 msgstr "Fájl mentése"
@@ -672,9 +668,6 @@ msgstr "Mérce, összehasonlítási alap"
 msgid "%s - System Information and Benchmark"
 msgstr "%s – Rendszerinformációk és teljesítményteszt"
 
-msgid "Search"
-msgstr "Keresés"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -693,11 +686,20 @@ msgstr ""
 "\n"
 "Kérjük, javítsa a problémát manuális telepítéssel"
 
+msgid "Picture copied to clipboard"
+msgstr "A kép másolva a vágólapra"
+
+msgid "Could not capture picture"
+msgstr "A kép nem készült el"
+
 msgid "Copy selected row"
 msgstr "Másold a kiválasztott sort"
 
 msgid "Copy all rows"
 msgstr "Másold ki az összes sort"
+
+msgid "Copy as picture"
+msgstr "Másolás képként"
 
 msgid "Copy all text"
 msgstr "Másold ki az összes szöveget"
@@ -3250,9 +3252,6 @@ msgstr "Interfész jelek szintjei"
 
 msgid "Configuration type"
 msgstr "Konfigurációs típus"
-
-msgid "Refresh"
-msgstr "Frissít"
 
 msgid "Timings"
 msgstr "Időpontok"

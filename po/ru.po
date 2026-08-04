@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hardinfo2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 13:18+0200\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2022-03-05 23:00+0300\n"
 "Last-Translator: Sergey Rodin <rodin.s@rambler.ru>, ViktorOn, tutralex\n"
 "Language-Team: \n"
@@ -528,68 +528,26 @@ msgstr ""
 "нет, напишите в FSF, Inc., 51 Franklin St, Fifth Floor, Boston, MA "
 "02110-1301 USA"
 
-msgid "_Information"
-msgstr "_Информация"
-
-msgid "_View"
-msgstr "_Вид"
-
-msgid "_Theme"
-msgstr "Тема"
-
-msgid "_Help"
-msgstr "_Справка"
-
 msgid "Generate _Report"
 msgstr "Создать отчет"
-
-msgid "Generates a report with detailed system information"
-msgstr "Создать отчет с подробной информацией о системе"
 
 msgid "Synchronize"
 msgstr "Синхронизировать"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr "Отправить результаты тестирования и получить обновленные данные"
-
-msgid "Update Available"
-msgstr "Доступно обновление"
-
-msgid "_Refresh"
-msgstr "Обновить"
-
-msgid "HardInfo2 _Web Site"
-msgstr "Домашняя страница"
-
-msgid "_Help - User Guide"
-msgstr "Руководство пользователя"
-
-msgid "_Update HardInfo2"
-msgstr "Обновить HardInfo2"
-
-msgid "_Report bug"
-msgstr "Сообщить об ошибке"
-
-msgid "_About HardInfo2"
-msgstr "О приложении"
-
-msgid "Displays program version information"
-msgstr "Показывает информацию о версии программы"
+msgid "Synchronize on startup"
+msgstr "Синхронизировать при запуске"
 
 msgid "_Quit"
 msgstr "Выход"
 
-msgid "_Side Pane"
+msgid "_Side Panel"
 msgstr "Боковая панель"
-
-msgid "Toggles side pane visibility"
-msgstr "Видимость боковой панели"
 
 msgid "_Toolbar"
 msgstr "Панель инструментов"
 
-msgid "Synchronize on startup"
-msgstr "Синхронизировать при запуске"
+msgid "_Theme"
+msgstr "Тема"
 
 msgid "Disable Theme"
 msgstr "Отключена"
@@ -611,6 +569,45 @@ msgstr "PixArt"
 
 msgid "Theme Silicon"
 msgstr "Silicon"
+
+msgid "_Refresh"
+msgstr "Обновить"
+
+msgid "HardInfo2 _Web Site"
+msgstr "Домашняя страница"
+
+msgid "_Help - User Guide"
+msgstr "Руководство пользователя"
+
+msgid "_Update HardInfo2"
+msgstr "Обновить HardInfo2"
+
+msgid "_Report bug"
+msgstr "Сообщить об ошибке"
+
+msgid "_About HardInfo2"
+msgstr "О приложении"
+
+msgid "_Information"
+msgstr "_Информация"
+
+msgid "_View"
+msgstr "_Вид"
+
+msgid "_Help"
+msgstr "_Справка"
+
+msgid "Refresh"
+msgstr "Обновление"
+
+msgid "Report"
+msgstr "Отчёт"
+
+msgid "Update"
+msgstr "Обновить"
+
+msgid "Search"
+msgstr "Поиск"
 
 msgid "Save File"
 msgstr "Сохранить файл"
@@ -674,9 +671,6 @@ msgstr "Тест"
 msgid "%s - System Information and Benchmark"
 msgstr "%s — Системная информация и тесты"
 
-msgid "Search"
-msgstr "Поиск"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -695,11 +689,20 @@ msgstr ""
 "\n"
 "Пожалуйста, исправьте ручной установкой"
 
+msgid "Picture copied to clipboard"
+msgstr "Изображение скопировано в буфер обмена"
+
+msgid "Could not capture picture"
+msgstr "Не удалось сделать снимок"
+
 msgid "Copy selected row"
 msgstr "Копировать выбранную строку"
 
 msgid "Copy all rows"
 msgstr "Копировать все строки"
+
+msgid "Copy as picture"
+msgstr "Скопировать как изображение"
 
 msgid "Copy all text"
 msgstr "Копировать весь текст"
@@ -3216,9 +3219,6 @@ msgstr "Уровни сигналов интерфейса"
 
 msgid "Configuration type"
 msgstr "Тип конфигурации"
-
-msgid "Refresh"
-msgstr "Обновление"
 
 msgid "Timings"
 msgstr "Тайминги"

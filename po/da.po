@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 13:18+0200\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2026-04-17 00:40+0200\n"
 "Last-Translator: hwspeedy\n"
 "Language-Team: \n"
@@ -517,68 +517,26 @@ msgstr ""
 "dette program; hvis ikke, skriv til Free Software Foundation, Inc., 51 "
 "Franklin St, Fifth Floor, Boston, MA 02110-1301 USA"
 
-msgid "_Information"
-msgstr "_Oplysninger"
-
-msgid "_View"
-msgstr "_Visning"
-
-msgid "_Theme"
-msgstr "_Tema"
-
-msgid "_Help"
-msgstr "_Hjælp"
-
 msgid "Generate _Report"
 msgstr "Generer _Rapport"
-
-msgid "Generates a report with detailed system information"
-msgstr "Genererer en rapport med detaljerede systemoplysninger"
 
 msgid "Synchronize"
 msgstr "Synkroniser"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr "Send benchmarkresultater og modtag opdaterede data fra netværket"
-
-msgid "Update Available"
-msgstr "Opdatering Tilgængelig"
-
-msgid "_Refresh"
-msgstr "_Opdater"
-
-msgid "HardInfo2 _Web Site"
-msgstr "HardInfo2 _Web side"
-
-msgid "_Help - User Guide"
-msgstr "_Hjælp - Bruger Manual"
-
-msgid "_Update HardInfo2"
-msgstr "Op_dater HardInfo2"
-
-msgid "_Report bug"
-msgstr "_Rapportér fejl"
-
-msgid "_About HardInfo2"
-msgstr "_Om HardInfo2"
-
-msgid "Displays program version information"
-msgstr "Viser oplysninger om programversion"
+msgid "Synchronize on startup"
+msgstr "Synkroniser ved opstart"
 
 msgid "_Quit"
 msgstr "_Afslut"
 
-msgid "_Side Pane"
-msgstr "_Siderude"
-
-msgid "Toggles side pane visibility"
-msgstr "Skifter siderudens synlighed"
+msgid "_Side Panel"
+msgstr "_Sidepanel_"
 
 msgid "_Toolbar"
 msgstr "_Værktøjslinje"
 
-msgid "Synchronize on startup"
-msgstr "Synkroniser ved opstart"
+msgid "_Theme"
+msgstr "_Tema"
 
 msgid "Disable Theme"
 msgstr "Deaktiver tema"
@@ -600,6 +558,45 @@ msgstr "Tema PixArt"
 
 msgid "Theme Silicon"
 msgstr "Tema Silicium"
+
+msgid "_Refresh"
+msgstr "_Opdater"
+
+msgid "HardInfo2 _Web Site"
+msgstr "HardInfo2 _Web side"
+
+msgid "_Help - User Guide"
+msgstr "_Hjælp - Bruger Manual"
+
+msgid "_Update HardInfo2"
+msgstr "Op_dater HardInfo2"
+
+msgid "_Report bug"
+msgstr "_Rapportér fejl"
+
+msgid "_About HardInfo2"
+msgstr "_Om HardInfo2"
+
+msgid "_Information"
+msgstr "_Oplysninger"
+
+msgid "_View"
+msgstr "_Visning"
+
+msgid "_Help"
+msgstr "_Hjælp"
+
+msgid "Refresh"
+msgstr "Opdater"
+
+msgid "Report"
+msgstr "Rapport"
+
+msgid "Update"
+msgstr "Opdatering"
+
+msgid "Search"
+msgstr "Søg"
 
 msgid "Save File"
 msgstr "Gem fil"
@@ -663,9 +660,6 @@ msgstr "Benchmark"
 msgid "%s - System Information and Benchmark"
 msgstr "%s - Systemoplysninger og benchmark"
 
-msgid "Search"
-msgstr "Søg"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -684,11 +678,20 @@ msgstr ""
 "\n"
 "Venligst fix ved at installere manuelt"
 
+msgid "Picture copied to clipboard"
+msgstr "Billede kopieret til udklipsholderen"
+
+msgid "Could not capture picture"
+msgstr "Kunne ikke tage et billede"
+
 msgid "Copy selected row"
 msgstr "Kopiér den markerede række"
 
 msgid "Copy all rows"
 msgstr "Kopiér alle rækker"
+
+msgid "Copy as picture"
+msgstr "Kopier som billede"
 
 msgid "Copy all text"
 msgstr "Kopiér al tekst"
@@ -1705,9 +1708,7 @@ msgstr "Pagecache-hukommelse er blevet brugt for nylig og ikke genvundet"
 
 msgid "Pagecache memory reclaimable without huge performance impact"
 msgstr ""
-"Hukommelse, der er allokeret til sidecachen, kan frigøres uden at det går "
-"nævneværdigt ud over ydeevnen.Pagecache-hukommelse, der kan genvindes uden "
-"stor indvirkning på ydeevnen"
+"Pagecache-hukommelse, der kan genvindes uden stor indvirkning på ydeevnen"
 
 msgid "Unevictable pages can't be swapped out for a variety of reasons"
 msgstr "Uundgåelige sider kan ikke udskiftes af forskellige årsager"
@@ -1768,9 +1769,7 @@ msgstr "Hukommelse brugt af FUSE til midlertidige tilbageskrivningsbuffere"
 
 msgid "Total memory currently available to be allocated on the system"
 msgstr ""
-"Samlet hukommelse, der i øjeblikket er tilgængelig til tildeling på systemet."
-"Total hukommelse, der i øjeblikket er tilgængelig til at blive allokeret på "
-"systemet"
+"Samlet hukommelse, der i øjeblikket er tilgængelig til tildeling på systemet"
 
 msgid "The amount of memory presently allocated on the system"
 msgstr "Mængden af ​​hukommelse, der i øjeblikket er allokeret til systemet"
@@ -3183,9 +3182,6 @@ msgstr "Grænsefladesignalniveauer"
 
 msgid "Configuration type"
 msgstr "Konfigurationstype"
-
-msgid "Refresh"
-msgstr "Opdater"
 
 msgid "Timings"
 msgstr "Tidspunkter"

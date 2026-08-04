@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 13:18+0200\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2026-03-09 17:50+0200\n"
 "Last-Translator: Sergiy Golovko <cappelikan@gmail.com>\n"
 "Language-Team: \n"
@@ -524,68 +524,26 @@ msgstr ""
 "якщо ні, напишіть до Free Software Foundation, Inc., 51 Franklin St, Fifth "
 "Floor, Boston, MA 02110-1301 USA"
 
-msgid "_Information"
-msgstr "_Інформація"
-
-msgid "_View"
-msgstr "_Перегляд"
-
-msgid "_Theme"
-msgstr "_Тема"
-
-msgid "_Help"
-msgstr "_Допомога"
-
 msgid "Generate _Report"
 msgstr "Створити _звіт"
-
-msgid "Generates a report with detailed system information"
-msgstr "Створює звіт із детальною системною інформацією"
 
 msgid "Synchronize"
 msgstr "Синхронізувати"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr "Надсилайте результати тестів і отримуйте оновлені дані з мережі"
-
-msgid "Update Available"
-msgstr "Оновлення доступне"
-
-msgid "_Refresh"
-msgstr "_Оновити"
-
-msgid "HardInfo2 _Web Site"
-msgstr "HardInfo2 _веб-сайт"
-
-msgid "_Help - User Guide"
-msgstr "_Допомога - посібник користувача"
-
-msgid "_Update HardInfo2"
-msgstr "_Оновити HardInfo2"
-
-msgid "_Report bug"
-msgstr "_Повідомити про помилку"
-
-msgid "_About HardInfo2"
-msgstr "_Про HardInfo2"
-
-msgid "Displays program version information"
-msgstr "Відображає інформацію про версію програми"
+msgid "Synchronize on startup"
+msgstr "Синхронізувати під час запуску"
 
 msgid "_Quit"
 msgstr "_Вийти"
 
-msgid "_Side Pane"
-msgstr "_Бічна панель"
-
-msgid "Toggles side pane visibility"
-msgstr "Перемикає видимість бічної панелі"
+msgid "_Side Panel"
+msgstr "_Бічна панель_"
 
 msgid "_Toolbar"
 msgstr "_Панель інструментів"
 
-msgid "Synchronize on startup"
-msgstr "Синхронізувати під час запуску"
+msgid "_Theme"
+msgstr "_Тема"
 
 msgid "Disable Theme"
 msgstr "Вимкнути тему"
@@ -607,6 +565,45 @@ msgstr "Тема PixArt"
 
 msgid "Theme Silicon"
 msgstr "Тема Силікон"
+
+msgid "_Refresh"
+msgstr "_Оновити"
+
+msgid "HardInfo2 _Web Site"
+msgstr "HardInfo2 _веб-сайт"
+
+msgid "_Help - User Guide"
+msgstr "_Допомога - посібник користувача"
+
+msgid "_Update HardInfo2"
+msgstr "_Оновити HardInfo2"
+
+msgid "_Report bug"
+msgstr "_Повідомити про помилку"
+
+msgid "_About HardInfo2"
+msgstr "_Про HardInfo2"
+
+msgid "_Information"
+msgstr "_Інформація"
+
+msgid "_View"
+msgstr "_Перегляд"
+
+msgid "_Help"
+msgstr "_Допомога"
+
+msgid "Refresh"
+msgstr "Оновити"
+
+msgid "Report"
+msgstr "Звіт"
+
+msgid "Update"
+msgstr "Оновлення"
+
+msgid "Search"
+msgstr "Пошук"
 
 msgid "Save File"
 msgstr "Зберегти файл"
@@ -670,9 +667,6 @@ msgstr "Еталон"
 msgid "%s - System Information and Benchmark"
 msgstr "%s – інформація про систему та тест"
 
-msgid "Search"
-msgstr "Пошук"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -691,11 +685,20 @@ msgstr ""
 "\n"
 "Виправте, встановивши вручну"
 
+msgid "Picture copied to clipboard"
+msgstr "Зображення скопійовано до буфера обміну"
+
+msgid "Could not capture picture"
+msgstr "Не вдалося зробити знімок"
+
 msgid "Copy selected row"
 msgstr "Скопіювати вибраний рядок"
 
 msgid "Copy all rows"
 msgstr "Скопіюйте всі рядки"
+
+msgid "Copy as picture"
+msgstr "Скопіювати як зображення"
 
 msgid "Copy all text"
 msgstr "Скопіюйте весь текст"
@@ -3210,9 +3213,6 @@ msgstr "Рівні сигналу інтерфейсу"
 
 msgid "Configuration type"
 msgstr "Тип конфігурації"
-
-msgid "Refresh"
-msgstr "Оновити"
 
 msgid "Timings"
 msgstr "Таймінг"

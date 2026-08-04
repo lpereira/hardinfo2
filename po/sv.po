@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 13:18+0200\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2025-10-15 16:03+0200\n"
 "Last-Translator: Daniel Nylander <github@danielnylander.se>\n"
 "Language-Team: \n"
@@ -520,68 +520,26 @@ msgstr ""
 "här programmet; om inte, skriv till Free Software Foundation, Inc, 51 "
 "Franklin St, Fifth Floor, Boston, MA 02110-1301 USA"
 
-msgid "_Information"
-msgstr "_Information"
-
-msgid "_View"
-msgstr "_Visa"
-
-msgid "_Theme"
-msgstr "_Tema"
-
-msgid "_Help"
-msgstr "_Hjälp"
-
 msgid "Generate _Report"
 msgstr "Generera _rapport"
-
-msgid "Generates a report with detailed system information"
-msgstr "Genererar en rapport med detaljerad systeminformation"
 
 msgid "Synchronize"
 msgstr "Synkronisera"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr "Skicka benchmark-resultat och ta emot uppdaterad data från nätverket"
-
-msgid "Update Available"
-msgstr "Uppdatering tillgänglig"
-
-msgid "_Refresh"
-msgstr "_Uppdatera"
-
-msgid "HardInfo2 _Web Site"
-msgstr "_Webbplats för HardInfo2"
-
-msgid "_Help - User Guide"
-msgstr "_Hjälp - Användarhandbok"
-
-msgid "_Update HardInfo2"
-msgstr "_Uppdatera HardInfo2"
-
-msgid "_Report bug"
-msgstr "_Rapportera fel"
-
-msgid "_About HardInfo2"
-msgstr "_Om HardInfo2"
-
-msgid "Displays program version information"
-msgstr "Visar information om programversion"
+msgid "Synchronize on startup"
+msgstr "Synkronisera vid start"
 
 msgid "_Quit"
 msgstr "A_vsluta"
 
-msgid "_Side Pane"
-msgstr "_Sidopanel"
-
-msgid "Toggles side pane visibility"
-msgstr "Växlar sidofönstrets synlighet"
+msgid "_Side Panel"
+msgstr "Sidopanel"
 
 msgid "_Toolbar"
 msgstr "Ver_ktygsfält"
 
-msgid "Synchronize on startup"
-msgstr "Synkronisera vid start"
+msgid "_Theme"
+msgstr "_Tema"
 
 msgid "Disable Theme"
 msgstr "Inaktivera tema"
@@ -603,6 +561,45 @@ msgstr "Tema PixArt"
 
 msgid "Theme Silicon"
 msgstr "Tema kisel"
+
+msgid "_Refresh"
+msgstr "_Uppdatera"
+
+msgid "HardInfo2 _Web Site"
+msgstr "_Webbplats för HardInfo2"
+
+msgid "_Help - User Guide"
+msgstr "_Hjälp - Användarhandbok"
+
+msgid "_Update HardInfo2"
+msgstr "_Uppdatera HardInfo2"
+
+msgid "_Report bug"
+msgstr "_Rapportera fel"
+
+msgid "_About HardInfo2"
+msgstr "_Om HardInfo2"
+
+msgid "_Information"
+msgstr "_Information"
+
+msgid "_View"
+msgstr "_Visa"
+
+msgid "_Help"
+msgstr "_Hjälp"
+
+msgid "Refresh"
+msgstr "Uppdatera"
+
+msgid "Report"
+msgstr "Rapport"
+
+msgid "Update"
+msgstr "Uppdatera"
+
+msgid "Search"
+msgstr "Sök"
 
 msgid "Save File"
 msgstr "Spara fil"
@@ -666,9 +663,6 @@ msgstr "Benchmark"
 msgid "%s - System Information and Benchmark"
 msgstr "%s - Systeminformation och benchmark"
 
-msgid "Search"
-msgstr "Sök"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -687,11 +681,20 @@ msgstr ""
 "\n"
 "Åtgärda genom att installera manuellt"
 
+msgid "Picture copied to clipboard"
+msgstr "Bilden kopierad till urklipp"
+
+msgid "Could not capture picture"
+msgstr "Kunde inte ta ett foto"
+
 msgid "Copy selected row"
 msgstr "Kopiera den valda raden"
 
 msgid "Copy all rows"
 msgstr "Kopiera alla rader"
+
+msgid "Copy as picture"
+msgstr "Kopiera som bild"
 
 msgid "Copy all text"
 msgstr "Kopiera all text"
@@ -3187,9 +3190,6 @@ msgstr "Signalnivåer för gränssnitt"
 
 msgid "Configuration type"
 msgstr "Konfigurationstyp"
-
-msgid "Refresh"
-msgstr "Uppdatera"
 
 msgid "Timings"
 msgstr "Tider"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hardinfo2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 13:18+0200\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2022-09-28\n"
 "Last-Translator: Yunji Lee<yunlisa96@gmail.com>\n"
 "Language-Team: \n"
@@ -507,68 +507,26 @@ msgstr ""
 "지 않은 경우, 자유 소프트웨어 재단（Free Software Foundation, Inc., 51 "
 "Franklin St, Fifth Floor, Boston, MA 02110-1301 USA）으로 문의하십시오"
 
-msgid "_Information"
-msgstr "정보（_I）"
-
-msgid "_View"
-msgstr "보기（_V）"
-
-msgid "_Theme"
-msgstr "테마"
-
-msgid "_Help"
-msgstr "도움말（_H）"
-
 msgid "Generate _Report"
 msgstr "보고서 생성（_R）"
-
-msgid "Generates a report with detailed system information"
-msgstr "자세한 시스템 정보가 포함된 보고서 생성"
 
 msgid "Synchronize"
 msgstr "동기화"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr "벤치마크 결과 전송 및 네트워크에서 업데이트된 데이터 수신"
-
-msgid "Update Available"
-msgstr "업데이트가 있습니다"
-
-msgid "_Refresh"
-msgstr "새로고침（_R）"
-
-msgid "HardInfo2 _Web Site"
-msgstr "HardInfo2 _웹사이트"
-
-msgid "_Help - User Guide"
-msgstr "도움말 - 사용자 가이드"
-
-msgid "_Update HardInfo2"
-msgstr "하드인포2 업데이트"
-
-msgid "_Report bug"
-msgstr "버그 신고（_R）"
-
-msgid "_About HardInfo2"
-msgstr "Hardinfo 정보（_A）"
-
-msgid "Displays program version information"
-msgstr "프로그램 버전 정보 표시"
+msgid "Synchronize on startup"
+msgstr "시작 시 동기화"
 
 msgid "_Quit"
 msgstr "끝내기（_Q）"
 
-msgid "_Side Pane"
-msgstr "사이드바（_S）"
-
-msgid "Toggles side pane visibility"
-msgstr "측면 창 가시성 전환"
+msgid "_Side Panel"
+msgstr "측면 패널"
 
 msgid "_Toolbar"
 msgstr "도구모음（_T）"
 
-msgid "Synchronize on startup"
-msgstr "시작 시 동기화"
+msgid "_Theme"
+msgstr "테마"
 
 msgid "Disable Theme"
 msgstr "테마 비활성화"
@@ -590,6 +548,45 @@ msgstr "테마: 픽스아트"
 
 msgid "Theme Silicon"
 msgstr "테마: 실리콘"
+
+msgid "_Refresh"
+msgstr "새로고침（_R）"
+
+msgid "HardInfo2 _Web Site"
+msgstr "HardInfo2 _웹사이트"
+
+msgid "_Help - User Guide"
+msgstr "도움말 - 사용자 가이드"
+
+msgid "_Update HardInfo2"
+msgstr "하드인포2 업데이트"
+
+msgid "_Report bug"
+msgstr "버그 신고（_R）"
+
+msgid "_About HardInfo2"
+msgstr "Hardinfo 정보（_A）"
+
+msgid "_Information"
+msgstr "정보（_I）"
+
+msgid "_View"
+msgstr "보기（_V）"
+
+msgid "_Help"
+msgstr "도움말（_H）"
+
+msgid "Refresh"
+msgstr "새로고침"
+
+msgid "Report"
+msgstr "보고서"
+
+msgid "Update"
+msgstr "업데이트"
+
+msgid "Search"
+msgstr "검색"
 
 msgid "Save File"
 msgstr "파일을 저장"
@@ -653,9 +650,6 @@ msgstr "벤치마크"
 msgid "%s - System Information and Benchmark"
 msgstr "%s - 시스템 정보 및 성능 테스트"
 
-msgid "Search"
-msgstr "검색"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -674,11 +668,20 @@ msgstr ""
 "\n"
 "수동으로 설치하여 문제를 해결해 주세요"
 
+msgid "Picture copied to clipboard"
+msgstr "이미지가 클립보드에 복사되었습니다"
+
+msgid "Could not capture picture"
+msgstr "사진을 촬영할 수 없습니다"
+
 msgid "Copy selected row"
 msgstr "선택한 행 복사"
 
 msgid "Copy all rows"
 msgstr "모든 행 복사"
+
+msgid "Copy as picture"
+msgstr "이미지처럼 복사"
 
 msgid "Copy all text"
 msgstr "모든 텍스트를 복사합니다"
@@ -3164,9 +3167,6 @@ msgstr "인터페이스 신호 레벨"
 
 msgid "Configuration type"
 msgstr "구성 유형"
-
-msgid "Refresh"
-msgstr "새로고침"
 
 msgid "Timings"
 msgstr "타이밍"

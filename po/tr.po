@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hardinfo2 master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 13:18+0200\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2026-03-31 13:54+0300\n"
 "Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
@@ -525,68 +525,26 @@ msgstr ""
 "gerekir; eğer almadıysanız, Free Software Foundation, Inc., 51 Franklin St, "
 "Fifth Floor, Boston, MA 02110-1301 USA adresine yazın"
 
-msgid "_Information"
-msgstr "_Bilgi"
-
-msgid "_View"
-msgstr "_Görünüm"
-
-msgid "_Theme"
-msgstr "_Tema"
-
-msgid "_Help"
-msgstr "_Yardım"
-
 msgid "Generate _Report"
 msgstr "_Rapor Oluştur"
-
-msgid "Generates a report with detailed system information"
-msgstr "Ayrıntılı sistem bilgileri içeren bir rapor oluşturur"
 
 msgid "Synchronize"
 msgstr "Eşzamanla"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr "Karşılaştırma sonuçları gönderin ve ağdan güncellenmiş veriler alın"
-
-msgid "Update Available"
-msgstr "Güncelleme Mevcut"
-
-msgid "_Refresh"
-msgstr "_Yenile"
-
-msgid "HardInfo2 _Web Site"
-msgstr "HardInfo2 _Web Sitesi"
-
-msgid "_Help - User Guide"
-msgstr "_Yardım - Kullanıcı Kılavuzu"
-
-msgid "_Update HardInfo2"
-msgstr "_HardInfo2'yi Güncelle"
-
-msgid "_Report bug"
-msgstr "Hata _Bildir"
-
-msgid "_About HardInfo2"
-msgstr "HardInfo2 _Hakkında"
-
-msgid "Displays program version information"
-msgstr "Program sürüm bilgilerini görüntüler"
+msgid "Synchronize on startup"
+msgstr "Başlangıçta senkronize et"
 
 msgid "_Quit"
 msgstr "_Çık"
 
-msgid "_Side Pane"
-msgstr "_Yan Panel"
-
-msgid "Toggles side pane visibility"
-msgstr "Yan bölmenin görünürlüğünü açar veya kapatır"
+msgid "_Side Panel"
+msgstr "Yan Panel"
 
 msgid "_Toolbar"
 msgstr "_Araç Çubuğu"
 
-msgid "Synchronize on startup"
-msgstr "Başlangıçta senkronize et"
+msgid "_Theme"
+msgstr "_Tema"
 
 msgid "Disable Theme"
 msgstr "Temayı Devre Dışı Bırak"
@@ -608,6 +566,45 @@ msgstr "Tema PixArt"
 
 msgid "Theme Silicon"
 msgstr "Tema Silikon"
+
+msgid "_Refresh"
+msgstr "_Yenile"
+
+msgid "HardInfo2 _Web Site"
+msgstr "HardInfo2 _Web Sitesi"
+
+msgid "_Help - User Guide"
+msgstr "_Yardım - Kullanıcı Kılavuzu"
+
+msgid "_Update HardInfo2"
+msgstr "_HardInfo2'yi Güncelle"
+
+msgid "_Report bug"
+msgstr "Hata _Bildir"
+
+msgid "_About HardInfo2"
+msgstr "HardInfo2 _Hakkında"
+
+msgid "_Information"
+msgstr "_Bilgi"
+
+msgid "_View"
+msgstr "_Görünüm"
+
+msgid "_Help"
+msgstr "_Yardım"
+
+msgid "Refresh"
+msgstr "Yenile"
+
+msgid "Report"
+msgstr "Rapor"
+
+msgid "Update"
+msgstr "Güncelleme"
+
+msgid "Search"
+msgstr "Ara"
 
 msgid "Save File"
 msgstr "Dosya Kaydet"
@@ -671,9 +668,6 @@ msgstr "Karşılaştırma"
 msgid "%s - System Information and Benchmark"
 msgstr "%s - Sistem Bilgileri ve Karşılaştırma"
 
-msgid "Search"
-msgstr "Ara"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -692,11 +686,20 @@ msgstr ""
 "\n"
 "Lütfen manuel olarak yükleyerek düzeltin"
 
+msgid "Picture copied to clipboard"
+msgstr "Resim panoya kopyalandı"
+
+msgid "Could not capture picture"
+msgstr "Fotoğraf çekilemedi"
+
 msgid "Copy selected row"
 msgstr "Seçili satırı kopyala"
 
 msgid "Copy all rows"
 msgstr "Tüm satırları kopyala"
+
+msgid "Copy as picture"
+msgstr "Resim olarak kopyala"
 
 msgid "Copy all text"
 msgstr "Tüm metni kopyala"
@@ -3205,9 +3208,6 @@ msgstr "Arayüz sinyal seviyeleri"
 
 msgid "Configuration type"
 msgstr "Yapılandırma türü"
-
-msgid "Refresh"
-msgstr "Yenile"
 
 msgid "Timings"
 msgstr "Zamanlamalar"

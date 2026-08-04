@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 13:18+0200\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2022-12-05 14:12+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: \n"
@@ -526,70 +526,26 @@ msgstr ""
 "com este programa; caso contrário, escreva para a Free Software Foundation, "
 "Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA"
 
-msgid "_Information"
-msgstr "_Informação"
-
-msgid "_View"
-msgstr "_Vista View"
-
-msgid "_Theme"
-msgstr "Tema"
-
-msgid "_Help"
-msgstr "_Ajuda"
-
 msgid "Generate _Report"
 msgstr "Gerar_relatório"
-
-msgid "Generates a report with detailed system information"
-msgstr "Gera um relatório com informações detalhadas do sistema"
 
 msgid "Synchronize"
 msgstr "Sincronizar"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr ""
-"Envie os resultados dos testes de desempenho e receba dados atualizados da "
-"rede"
-
-msgid "Update Available"
-msgstr "Atualização disponível"
-
-msgid "_Refresh"
-msgstr "_Atualizar"
-
-msgid "HardInfo2 _Web Site"
-msgstr "HardInfo2 – Site na Web"
-
-msgid "_Help - User Guide"
-msgstr "Ajuda - Guia do utilizador"
-
-msgid "_Update HardInfo2"
-msgstr "Atualizar o HardInfo2"
-
-msgid "_Report bug"
-msgstr "_Reportar bug"
-
-msgid "_About HardInfo2"
-msgstr "_Acerca do Hardinfo"
-
-msgid "Displays program version information"
-msgstr "Exibe informação da versão do programa"
+msgid "Synchronize on startup"
+msgstr "Sincronizar ao iniciar"
 
 msgid "_Quit"
 msgstr "_Sair"
 
-msgid "_Side Pane"
-msgstr "_Painel lateral"
-
-msgid "Toggles side pane visibility"
-msgstr "Alterna a visibilidade do painel lateral"
+msgid "_Side Panel"
+msgstr "_Painel Lateral"
 
 msgid "_Toolbar"
 msgstr "_Barra de ferramentas"
 
-msgid "Synchronize on startup"
-msgstr "Sincronizar ao iniciar"
+msgid "_Theme"
+msgstr "Tema"
 
 msgid "Disable Theme"
 msgstr "Desativar tema"
@@ -611,6 +567,45 @@ msgstr "Tema PixArt"
 
 msgid "Theme Silicon"
 msgstr "Tema: Silício"
+
+msgid "_Refresh"
+msgstr "_Atualizar"
+
+msgid "HardInfo2 _Web Site"
+msgstr "HardInfo2 – Site na Web"
+
+msgid "_Help - User Guide"
+msgstr "Ajuda - Guia do utilizador"
+
+msgid "_Update HardInfo2"
+msgstr "Atualizar o HardInfo2"
+
+msgid "_Report bug"
+msgstr "_Reportar bug"
+
+msgid "_About HardInfo2"
+msgstr "_Acerca do Hardinfo"
+
+msgid "_Information"
+msgstr "_Informação"
+
+msgid "_View"
+msgstr "_Vista View"
+
+msgid "_Help"
+msgstr "_Ajuda"
+
+msgid "Refresh"
+msgstr "Atualizar"
+
+msgid "Report"
+msgstr "Relatório"
+
+msgid "Update"
+msgstr "Atualizar"
+
+msgid "Search"
+msgstr "Pesquisar"
 
 msgid "Save File"
 msgstr "Guardar ficheiro"
@@ -674,9 +669,6 @@ msgstr "Referência"
 msgid "%s - System Information and Benchmark"
 msgstr "%s – Informações do sistema e teste de desempenho"
 
-msgid "Search"
-msgstr "Pesquisar"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -695,11 +687,20 @@ msgstr ""
 "\n"
 "Por favor, corrija instalando-os manualmente"
 
+msgid "Picture copied to clipboard"
+msgstr "Imagem copiada para a área de transferência"
+
+msgid "Could not capture picture"
+msgstr "Não foi possível capturar a imagem"
+
 msgid "Copy selected row"
 msgstr "Copiar linha selecionada"
 
 msgid "Copy all rows"
 msgstr "Copiar todas as linhas"
+
+msgid "Copy as picture"
+msgstr "Copiar como imagem"
 
 msgid "Copy all text"
 msgstr "Copie todo o texto"
@@ -3236,9 +3237,6 @@ msgstr "Níveis de sinal de interface"
 
 msgid "Configuration type"
 msgstr "Tipo de configuração"
-
-msgid "Refresh"
-msgstr "Atualizar"
 
 msgid "Timings"
 msgstr "Tempos"

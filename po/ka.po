@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hardinfo2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 13:18+0200\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2025-11-23 14:19+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <(nothing)>\n"
@@ -525,69 +525,26 @@ msgstr ""
 "თუ ეს არ მოხდა, დაუკავშირდით Free Software Foundation, Inc., 51 Franklin St, "
 "Fifth Floor, Boston, MA 02110-1301 USA"
 
-msgid "_Information"
-msgstr "_ინფორმაცია"
-
-msgid "_View"
-msgstr "_ხედი"
-
-msgid "_Theme"
-msgstr "_თემა"
-
-msgid "_Help"
-msgstr "_დახმარება"
-
 msgid "Generate _Report"
 msgstr "ანგარიშის გენე_რაცია"
-
-msgid "Generates a report with detailed system information"
-msgstr "გენერირებს დეტალურ ინფორმაციას სისტემის შესახებ"
 
 msgid "Synchronize"
 msgstr "სინქრონიზაცია"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr ""
-"გამოაგზავნეთ შეფასების შედეგები და მიიღეთ განახლებული მონაცემები ქსელიდან"
-
-msgid "Update Available"
-msgstr "ხელმისაწვდომია განახლება"
-
-msgid "_Refresh"
-msgstr "_განახლება"
-
-msgid "HardInfo2 _Web Site"
-msgstr "HardInfo2-ის _ვებსაიტი"
-
-msgid "_Help - User Guide"
-msgstr "_დახმარება - მომხმარებლის სახელმძღვანელო"
-
-msgid "_Update HardInfo2"
-msgstr "_HardInfo2-ის განახლება"
-
-msgid "_Report bug"
-msgstr "შეცდომის ანგა_რიში"
-
-msgid "_About HardInfo2"
-msgstr "HardInfo2-ის შეს_ახებ"
-
-msgid "Displays program version information"
-msgstr "აჩვენებს პროგრამის ვერსიის ინფორამციას"
+msgid "Synchronize on startup"
+msgstr "სინქრონიზაცია გაშვებისას"
 
 msgid "_Quit"
 msgstr "გასვ_ლა"
 
-msgid "_Side Pane"
-msgstr "_გვერდითა პანელი"
-
-msgid "Toggles side pane visibility"
-msgstr "გადართავს გვერდითი პანელის ხილვადობას"
+msgid "_Side Panel"
+msgstr "გვერდითი პანელი"
 
 msgid "_Toolbar"
 msgstr "ხელსაწყოთა _პანელი"
 
-msgid "Synchronize on startup"
-msgstr "სინქრონიზაცია გაშვებისას"
+msgid "_Theme"
+msgstr "_თემა"
 
 msgid "Disable Theme"
 msgstr "თემის გამორთვა"
@@ -609,6 +566,45 @@ msgstr "PixArt-ის თემა"
 
 msgid "Theme Silicon"
 msgstr "სილიციუმის თემა"
+
+msgid "_Refresh"
+msgstr "_განახლება"
+
+msgid "HardInfo2 _Web Site"
+msgstr "HardInfo2-ის _ვებსაიტი"
+
+msgid "_Help - User Guide"
+msgstr "_დახმარება - მომხმარებლის სახელმძღვანელო"
+
+msgid "_Update HardInfo2"
+msgstr "_HardInfo2-ის განახლება"
+
+msgid "_Report bug"
+msgstr "შეცდომის ანგა_რიში"
+
+msgid "_About HardInfo2"
+msgstr "HardInfo2-ის შეს_ახებ"
+
+msgid "_Information"
+msgstr "_ინფორმაცია"
+
+msgid "_View"
+msgstr "_ხედი"
+
+msgid "_Help"
+msgstr "_დახმარება"
+
+msgid "Refresh"
+msgstr "განახლება"
+
+msgid "Report"
+msgstr "ანგარიში"
+
+msgid "Update"
+msgstr "ახალი ვერსია"
+
+msgid "Search"
+msgstr "ძიება"
 
 msgid "Save File"
 msgstr "ფაილის შენახვა"
@@ -674,9 +670,6 @@ msgstr "ტესტირება"
 msgid "%s - System Information and Benchmark"
 msgstr "%s - სისტემის ინფორმაცია და ტესტირება"
 
-msgid "Search"
-msgstr "ძიება"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -695,11 +688,20 @@ msgstr ""
 "\n"
 "გთხოვთ, შეასწორეთ, ხელით დააინსტალიროთ"
 
+msgid "Picture copied to clipboard"
+msgstr "სურათი კოპირებულია და ჩასმულია ბუფერში"
+
+msgid "Could not capture picture"
+msgstr "სურათის გადაღება ვერ მოხერხდა"
+
 msgid "Copy selected row"
 msgstr "შერჩეული რიგის კოპირება"
 
 msgid "Copy all rows"
 msgstr "ყველა რიგის კოპირება"
+
+msgid "Copy as picture"
+msgstr "კოპირება როგორც სურათი"
 
 msgid "Copy all text"
 msgstr "ყველა ტექსტის კოპირება"
@@ -3246,9 +3248,6 @@ msgstr "ინტერფეისის სიგნალის დონე�
 
 msgid "Configuration type"
 msgstr "კონფიგურაციის ტიპი"
-
-msgid "Refresh"
-msgstr "განახლება"
 
 msgid "Timings"
 msgstr "დრო"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-11 13:18+0200\n"
+"POT-Creation-Date: 2026-08-04 21:20+0200\n"
 "PO-Revision-Date: 2026-06-04 02:46+0200\n"
 "Last-Translator: Alexander Münch <git@thehacker.biz>\n"
 "Language-Team: German\n"
@@ -525,70 +525,26 @@ msgstr ""
 "License erhalten haben; falls nicht, wenden Sie sich an die Free Software "
 "Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA"
 
-msgid "_Information"
-msgstr "_Informationen"
-
-msgid "_View"
-msgstr "_Ansicht"
-
-msgid "_Theme"
-msgstr "Thema"
-
-msgid "_Help"
-msgstr "_Hilfe"
-
 msgid "Generate _Report"
 msgstr "_Bericht generieren"
-
-msgid "Generates a report with detailed system information"
-msgstr "Erstellt einen Bericht mit detaillierten Systeminformationen"
 
 msgid "Synchronize"
 msgstr "Synchronisieren"
 
-msgid "Send benchmark results and receive updated data from the network"
-msgstr ""
-"Senden Sie Benchmark-Ergebnisse und erhalten Sie aktualisierte Daten aus dem "
-"Netzwerk"
-
-msgid "Update Available"
-msgstr "Update verfügbar"
-
-msgid "_Refresh"
-msgstr "_Aktualisieren"
-
-msgid "HardInfo2 _Web Site"
-msgstr "HardInfo2 – Webseite"
-
-msgid "_Help - User Guide"
-msgstr "Hilfe – Benutzerhandbuch"
-
-msgid "_Update HardInfo2"
-msgstr "_HardInfo2 aktualisieren"
-
-msgid "_Report bug"
-msgstr "Fehler _melden"
-
-msgid "_About HardInfo2"
-msgstr "_Über HardInfo2"
-
-msgid "Displays program version information"
-msgstr "Zeigt die Versionsinformationen des Programms an"
+msgid "Synchronize on startup"
+msgstr "Beim Start synchronisieren"
 
 msgid "_Quit"
 msgstr "_Beenden"
 
-msgid "_Side Pane"
-msgstr "_Seitenleiste"
-
-msgid "Toggles side pane visibility"
-msgstr "Schaltet die Sichtbarkeit der Seitenleiste ein oder aus"
+msgid "_Side Panel"
+msgstr "_Seitenleiste_"
 
 msgid "_Toolbar"
 msgstr "_Symbolleiste"
 
-msgid "Synchronize on startup"
-msgstr "Beim Start synchronisieren"
+msgid "_Theme"
+msgstr "Thema"
 
 msgid "Disable Theme"
 msgstr "Design deaktivieren"
@@ -610,6 +566,45 @@ msgstr "Thema: PixArt"
 
 msgid "Theme Silicon"
 msgstr "Thema: Silizium"
+
+msgid "_Refresh"
+msgstr "_Aktualisieren"
+
+msgid "HardInfo2 _Web Site"
+msgstr "HardInfo2 – Webseite"
+
+msgid "_Help - User Guide"
+msgstr "Hilfe – Benutzerhandbuch"
+
+msgid "_Update HardInfo2"
+msgstr "_HardInfo2 aktualisieren"
+
+msgid "_Report bug"
+msgstr "Fehler _melden"
+
+msgid "_About HardInfo2"
+msgstr "_Über HardInfo2"
+
+msgid "_Information"
+msgstr "_Informationen"
+
+msgid "_View"
+msgstr "_Ansicht"
+
+msgid "_Help"
+msgstr "_Hilfe"
+
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+msgid "Report"
+msgstr "Bericht"
+
+msgid "Update"
+msgstr "Aktualisieren"
+
+msgid "Search"
+msgstr "Suchen"
 
 msgid "Save File"
 msgstr "Datei speichern"
@@ -673,9 +668,6 @@ msgstr "Referenzwert"
 msgid "%s - System Information and Benchmark"
 msgstr "%s – Systeminformationen und Benchmark"
 
-msgid "Search"
-msgstr "Suchen"
-
 #, c-format
 msgid ""
 "<b>Hardinfo2 not packaged correctly</b>\n"
@@ -694,11 +686,20 @@ msgstr ""
 "\n"
 "Bitte beheben Sie dies, indem Sie die Pakete manuell installieren"
 
+msgid "Picture copied to clipboard"
+msgstr "Bild in die Zwischenablage kopiert"
+
+msgid "Could not capture picture"
+msgstr "Das Bild konnte nicht aufgenommen werden"
+
 msgid "Copy selected row"
 msgstr "Ausgewählte Zeile kopieren"
 
 msgid "Copy all rows"
 msgstr "Alle Zeilen kopieren"
+
+msgid "Copy as picture"
+msgstr "Als Bild kopieren"
 
 msgid "Copy all text"
 msgstr "Text: Kopieren Sie den gesamten Text"
@@ -3262,9 +3263,6 @@ msgstr "Schnittstellensignalpegel"
 
 msgid "Configuration type"
 msgstr "Konfigurationstyp"
-
-msgid "Refresh"
-msgstr "Aktualisieren"
 
 msgid "Timings"
 msgstr "Zeitangaben"
