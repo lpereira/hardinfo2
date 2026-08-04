@@ -538,7 +538,6 @@ include_directories(
 	${CMAKE_SOURCE_DIR}
 	${CMAKE_SOURCE_DIR}/includes
 	${CMAKE_SOURCE_DIR}/includes/${HARDINFO2_ARCH}
-	${CMAKE_SOURCE_DIR}/deps/uber-graph
 	${CMAKE_SOURCE_DIR}/deps/sysobj_early/include
 	${CMAKE_SOURCE_DIR}/deps/sysobj_early/gui
 	${CMAKE_BINARY_DIR}
@@ -700,23 +699,6 @@ add_library(sysobj_early STATIC
 set_target_properties(sysobj_early PROPERTIES COMPILE_FLAGS "-std=c99 -Wno-parentheses -Werror=implicit-function-declaration")
 target_link_libraries(sysobj_early m)
 
-if (HARDINFO2_GTK3)
-add_library(uber-graph STATIC
-	deps/uber-graph/g-ring.c
-	deps/uber-graph/uber-frame-source.c
-	deps/uber-graph/uber-graph.c
-	deps/uber-graph/uber-heat-map.c
-	deps/uber-graph/uber-label.c
-	deps/uber-graph/uber-line-graph.c
-	deps/uber-graph/uber-range.c
-	deps/uber-graph/uber-scale.c
-	deps/uber-graph/uber-scatter.c
-	deps/uber-graph/uber-timeout-interval.c
-	deps/uber-graph/uber-window.c
-)
-set_target_properties(uber-graph PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations -Werror=implicit-function-declaration")
-endif()
-
 set_source_files_properties(
 	hardinfo2/usb_util.c
 	hardinfo2/pci_util.c
@@ -755,11 +737,10 @@ add_executable(hardinfo2
 	shell/report.c
 	shell/shell.c
 	shell/syncmanager.c
-	shell/loadgraph-uber.c
+	shell/livegraph.c
 )
 target_link_libraries(hardinfo2
 	-Wl,-whole-archive sysobj_early -Wl,-no-whole-archive
-	uber-graph
 	${GTK_LIBRARIES}
 	${LIBSOUP_LIBRARIES}
 	m
@@ -795,7 +776,7 @@ add_executable(hardinfo2
 	shell/report.c
 	shell/shell.c
 	shell/syncmanager.c
-	shell/loadgraph.c
+	shell/livegraph.c
 )
 target_link_libraries(hardinfo2
 	-Wl,-whole-archive sysobj_early -Wl,-no-whole-archive

@@ -389,7 +389,6 @@ void cb_about()
 	"More contributors in GitHub",
 	"",
 	"Based on work by:",
-	"uber-graph by Christian Hergert and others.",
 	"BinReloc by Hongli Lai",
 	"decode-dimms by Philip Edelbrock",
 	"decode-dimms by Christian Zuckschwerdt",

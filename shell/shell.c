@@ -21,6 +21,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fcntl.h>
+#include <math.h>
 
 #include <gtk/gtk.h>
 #include <glib/gstdio.h>
@@ -799,6 +800,10 @@ static void stylechange2_me(void)
         //update theme
         cb_disable_theme();
     }
+    if (shell && shell->loadgraph)
+        live_graph_set_theme(LIVE_GRAPH(shell->loadgraph),
+                             params.darkmode ? LIVE_GRAPH_THEME_DARK
+                                             : LIVE_GRAPH_THEME_LIGHT);
   }
   if(update) update--;
 }
@@ -1835,7 +1840,7 @@ shell_screenshot_take_idle(gpointer user_data)
             sh->info_tree->scroll, sh->info_tree->view);
         /* loadgraph is a direct notebook child, not in a scrolled window. */
         bottom = shell_screenshot_capture_widget(
-            load_graph_get_framed(sh->loadgraph));
+            sh->loadgraph);
         break;
 
     default:
@@ -2132,7 +2137,11 @@ void shell_init(GSList * modules)
 
     shell->tree = tree_new();
     shell->info_tree = info_tree_new();
-    shell->loadgraph = load_graph_new(75);
+    /* 1800 samples at ~1/s gives ~30 minutes of history. */
+    shell->loadgraph = live_graph_new(1800);
+    live_graph_set_theme(LIVE_GRAPH(shell->loadgraph),
+                         params.darkmode ? LIVE_GRAPH_THEME_DARK
+                                         : LIVE_GRAPH_THEME_LIGHT);
     shell->detail_view = detail_view_new();
     shell_set_transient_dialog(NULL);
 
@@ -2145,7 +2154,7 @@ void shell_init(GSList * modules)
 		    SHELL_PACK_RESIZE, SHELL_PACK_SHRINK);
 
     gtk_notebook_append_page(GTK_NOTEBOOK(shell->notebook),
-			     load_graph_get_framed(shell->loadgraph),
+			     shell->loadgraph,
 			     NULL);
     gtk_notebook_append_page(GTK_NOTEBOOK(shell->notebook),
                              shell->detail_view->scroll, NULL);
@@ -2162,7 +2171,6 @@ void shell_init(GSList * modules)
 
     gtk_widget_show_all(shell->hbox);
 
-    load_graph_configure_expose(shell->loadgraph);
     gtk_widget_hide(shell->notebook);
     gtk_widget_hide(shell->note->event_box);
 
@@ -2199,14 +2207,14 @@ static gboolean update_field(gpointer data)
                         &sort_iter, item->iter)) {
                     if (gtk_tree_selection_iter_is_selected(shell->info_tree->selection,
                                                             &sort_iter)) {
-                        load_graph_set_title(shell->loadgraph, fu->field_name);
                         v = atof(value);
-                        /* fix KiB->Bytes for UberGraph (GTK3) */
-#if GTK_CHECK_VERSION(3, 0, 0)
-                        if (strstr(value, "KiB"))
-                            v *= 1024;
-#endif
-                        load_graph_update(shell->loadgraph, v);
+                        if (strstr(value, "KiB")) v *= 1024;
+                        if (strstr(value, "MHz")) v *= 1000000;
+                        /* push the value on the first signal and leave the
+                         * remaining signals blank for this sample */
+                        live_graph_push(LIVE_GRAPH(shell->loadgraph), 0, v);
+                        for (gint s = 1; s < live_graph_n_signals(); s++)
+                            live_graph_push(LIVE_GRAPH(shell->loadgraph), s, LG_NO_VALUE);
                     }
                 }
             }
@@ -2393,19 +2401,18 @@ static void set_view_type(ShellViewType viewtype, gboolean reload)
         gtk_widget_show(shell->info_tree->scroll);
         gtk_notebook_set_current_page(GTK_NOTEBOOK(shell->notebook), 0);
         gtk_widget_show(shell->notebook);
-        load_graph_clear(shell->loadgraph);
+        live_graph_clear(LIVE_GRAPH(shell->loadgraph));
 
         if (type_changed) {
 #if GTK_CHECK_VERSION(2, 18, 0)
             GtkAllocation* alloc = g_new(GtkAllocation, 1);
             gtk_widget_get_allocation(shell->hbox, alloc);
             gtk_paned_set_position(GTK_PANED(shell->vpaned),
-                    alloc->height - load_graph_get_height(shell->loadgraph) - 16);
+                    alloc->height / 2);
             g_free(alloc);
 #else
             gtk_paned_set_position(GTK_PANED(shell->vpaned),
-                           shell->hbox->allocation.height -
-                           load_graph_get_height(shell->loadgraph) - 16);
+                           shell->hbox->allocation.height / 2);
 #endif
         }
         break;
@@ -2472,10 +2479,6 @@ static void group_handle_special(GKeyFile *key_file,
         } else if (g_str_equal(key, "NormalizePercentage")) {
             shell->normalize_percentage =
                 g_key_file_get_boolean(key_file, group, key, NULL);
-        } else if (g_str_equal(key, "LoadGraphSuffix")) {
-            gchar *suffix = g_key_file_get_value(key_file, group, key, NULL);
-            load_graph_set_data_suffix(shell->loadgraph, suffix);
-            g_free(suffix);
         } else if (g_str_equal(key, "ReloadInterval")) {
             gint ms;
 
@@ -3503,6 +3506,11 @@ static void info_selected(GtkTreeSelection * ts, gpointer data)
 
     if (!gtk_tree_selection_get_selected(ts, &model, &parent))
 	return;
+
+    /* a new row was selected in the info tree: restart the live graph
+     * so it only accumulates data for the newly selected field */
+    if (shell->view_type == SHELL_VIEW_LOAD_GRAPH && shell->loadgraph)
+        live_graph_clear(LIVE_GRAPH(shell->loadgraph));
 
     if (/*shell->view_type == SHELL_VIEW_NORMAL ||*/
         shell->view_type == SHELL_VIEW_PROGRESS) {

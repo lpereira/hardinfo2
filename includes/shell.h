@@ -20,7 +20,7 @@
 
 #include <gtk/gtk.h>
 
-#include "loadgraph.h"
+#include "livegraph.h"
 #include "help-viewer.h"
 
 typedef struct _Shell			Shell;
@@ -92,7 +92,7 @@ struct _Shell {
     ShellModuleEntry	*selected;
     ShellNote		*note;
     DetailView		*detail_view;
-    LoadGraph		*loadgraph;
+    GtkWidget		*loadgraph;
 
     GtkWidget         *menubar;                 /* GtkMenuBar */
     GtkWidget         *toolbar_widget;          /* Main toolbar */
