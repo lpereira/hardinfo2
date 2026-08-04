@@ -2213,8 +2213,11 @@ static gboolean update_field(gpointer data)
                         /* push the value on the first signal and leave the
                          * remaining signals blank for this sample */
                         live_graph_push(LIVE_GRAPH(shell->loadgraph), 0, v);
-                        for (gint s = 1; s < live_graph_n_signals(); s++)
+			gint s = 1;
+                        while ( s < live_graph_n_signals()){
                             live_graph_push(LIVE_GRAPH(shell->loadgraph), s, LG_NO_VALUE);
+			    s++;
+			}
                     }
                 }
             }
