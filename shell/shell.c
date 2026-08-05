@@ -2411,11 +2411,11 @@ static void set_view_type(ShellViewType viewtype, gboolean reload)
             GtkAllocation* alloc = g_new(GtkAllocation, 1);
             gtk_widget_get_allocation(shell->hbox, alloc);
             gtk_paned_set_position(GTK_PANED(shell->vpaned),
-                    alloc->height / 2);
+                    alloc->height / 4 * 3);
             g_free(alloc);
 #else
             gtk_paned_set_position(GTK_PANED(shell->vpaned),
-                           shell->hbox->allocation.height / 2);
+                           shell->hbox->allocation.height / 4 * 3);
 #endif
         }
         break;
