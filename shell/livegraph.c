@@ -100,9 +100,9 @@ live_graph_new (gint max_samples, gint n_signals)
 {
     LiveGraph *graph;
 
-    if (max_samples < 2)
+    if (max_samples < 2 || max_samples>10000)
         max_samples = 2;
-    if (n_signals < 1)
+    if (n_signals < 1 || n_signals>31)
         n_signals = 1;
     graph = g_object_new (LIVE_TYPE_GRAPH, NULL);
 
