@@ -2138,7 +2138,7 @@ void shell_init(GSList * modules)
     shell->tree = tree_new();
     shell->info_tree = info_tree_new();
     /* 1800 samples at ~1/s gives ~30 minutes of history. */
-    shell->loadgraph = live_graph_new(1800);
+    shell->loadgraph = live_graph_new(1800, 10);//max 10 graphs
     live_graph_set_theme(LIVE_GRAPH(shell->loadgraph),
                          params.darkmode ? LIVE_GRAPH_THEME_DARK
                                          : LIVE_GRAPH_THEME_LIGHT);
@@ -2214,7 +2214,7 @@ static gboolean update_field(gpointer data)
                          * remaining signals blank for this sample */
                         live_graph_push(LIVE_GRAPH(shell->loadgraph), 0, v);
 			gint s = 1;
-                        while ( s < live_graph_n_signals()){
+                        while ( s < live_graph_n_signals(LIVE_GRAPH(shell->loadgraph))){
                             live_graph_push(LIVE_GRAPH(shell->loadgraph), s, LG_NO_VALUE);
 			    s++;
 			}

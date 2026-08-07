@@ -36,14 +36,14 @@ typedef enum {
 GType  live_graph_get_type (void) G_GNUC_CONST;
 
 /* Create a graph with an explicit ring-buffer capacity (max number of
- * samples retained per signal). The capacity is fixed for the lifetime of
- * the widget. */
-GtkWidget *live_graph_new (gint max_samples);
+ * samples retained per signal) and the given number of signals (lines).
+ * Both are fixed for the lifetime of the widget. */
+GtkWidget *live_graph_new (gint max_samples, gint n_signals);
 
 /* Push a raw sample for the given signal index (autoscaled internally). */
 void live_graph_push (LiveGraph *graph, gint signal, gdouble value);
 
-gint live_graph_n_signals (void);
+gint live_graph_n_signals (LiveGraph *graph);
 
 void live_graph_clear (LiveGraph *graph);
 
