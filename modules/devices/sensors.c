@@ -669,6 +669,69 @@ static void read_sensors_ipmi(void) {
     g_free(err);
 }
 
+static void read_sensors_vram(void) {
+    const gchar *path_drm = "/sys/class/drm";
+    GDir *drm;
+
+    if (!g_file_test(path_drm, G_FILE_TEST_IS_DIR))
+        return;
+
+    if ((drm = g_dir_open(path_drm, 0, NULL))) {
+        const gchar *entry;
+	double sum_used=0,sum_total=0;
+	gint cnt=0;
+
+        while ((entry = g_dir_read_name(drm))) {
+            if (!g_str_has_prefix(entry, "card"))
+                continue;
+
+            gchar *used_path =
+                g_strdup_printf("%s/%s/device/mem_info_vram_used",
+                                path_drm, entry);
+            gchar *total_path =
+                g_strdup_printf("%s/%s/device/mem_info_vram_total",
+                                path_drm, entry);
+            gchar *contents = NULL;
+
+            if (g_file_get_contents(used_path, &contents, NULL, NULL)) {
+                guint64 used = g_ascii_strtoull(contents, NULL, 10);
+		g_free(contents);
+		if (g_file_get_contents(total_path, &contents, NULL, NULL)) {
+		    guint64 total = g_ascii_strtoull(contents, NULL, 10);
+		    g_free(contents);
+		    if (total > 0) {
+		        gchar *name = g_strdup_printf("vram_used_%s",entry);
+			add_sensor("VRAM", name, "drm",
+				   (double)used / 1073741824.0, " GB", "memory");
+			g_free(name);
+			name = g_strdup_printf("vram_free_%s",entry);
+			add_sensor("VRAM", name, "drm",
+				   (double)(total-used) / 1073741824.0, " GB", "memory");
+			cnt++;
+			sum_used+=used;
+			sum_total+=total;
+			g_free(name);
+		    }
+		}
+            }
+            g_free(used_path);
+        }
+
+        g_dir_close(drm);
+	//total
+	if(cnt>1) {
+	    gchar *name = g_strdup_printf("vram_used_total");
+	    add_sensor("VRAM", name, "drm",
+		       (double)sum_used / 1073741824.0, " GB", "memory");
+	    g_free(name);
+	    name = g_strdup_printf("vram_free_total");
+	    add_sensor("VRAM", name, "drm",
+		       (double)(sum_total-sum_used) / 1073741824.0, " GB", "memory");
+	    g_free(name);
+	}
+    }
+}
+
 static void read_sensors_udisks2(void) {
     GSList *node;
     GSList *temps;
@@ -792,6 +855,7 @@ void scan_sensors_do(void) {
     read_sensors_cpufreq();
     read_sensors_windfarm();
     read_sensors_udisks2();
+    read_sensors_vram();
 }
 
 void sensor_init(void) {

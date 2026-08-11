@@ -39,6 +39,38 @@ void gpu_summary_add(const char *gpu_name) {
 
 #define UNKIFNULL_AC(f) (f != NULL) ? f : _("(Unknown)");
 
+/* format a VRAM size nicely like "8GB" or "3.2GB" */
+static gchar *vram_format_size(guint64 bytes) {
+    double val = (double) bytes;
+    const char *unit = _("B");
+    if (bytes >= 1073741824ULL)  { val = bytes / 1073741824.0; unit = _("GB"); }
+    else if (bytes >= 1048576ULL){ val = bytes / 1048576.0;    unit = _("MB"); }
+    else if (bytes >= 1024ULL)   { val = bytes / 1024.0;       unit = _("KB"); }
+    return g_strdup_printf("%.1f%s", val, unit);
+}
+
+/* build a markup bar showing used VRAM, like the progress bars in the
+ * benchmark results, with the total shown at the end */
+static gchar *vram_used_bar(guint64 used, guint64 total) {
+    const int seg = 20;
+    int fill = (seg * used) / total;
+    if (fill < 0) fill = 0;
+    if (fill > seg) fill = seg;
+
+    GString *s = g_string_new(NULL);
+    g_string_append(s, "<span font_family=\"monospace\">");
+    g_string_append_printf(s, "<span background=\"#2ECC40\">");
+    for (int i = 0; i < fill; i++)
+        g_string_append_c(s, ' ');
+    g_string_append(s, "</span>");
+    g_string_append_printf(s, "<span background=\"#B0B0B0\">");
+    for (int i = fill; i < seg; i++)
+        g_string_append_c(s, ' ');
+    g_string_append(s, "</span></span>");
+
+    return g_string_free(s, FALSE);
+}
+
 static void _gpu_pci_dev(gpud* gpu) {
     pcid *p = gpu->pci_dev;
     gchar *str;
@@ -127,6 +159,40 @@ static void _gpu_pci_dev(gpud* gpu) {
             freq = g_strdup_printf("%0.2f %s", (double) gpu->khz_max / 1000, _("MHz"));
     }
 
+    gchar *vram_str = g_strdup("");
+    if (gpu->sysfs_drm_path) {
+        gchar path[512];
+        gchar *total_s = NULL, *used_s = NULL;
+        guint64 total = 0, used = 0;
+
+        snprintf(path, sizeof(path), "%s/%s/device/mem_info_vram_used",
+                 gpu->sysfs_drm_path, gpu->id);
+        g_file_get_contents(path, &used_s, NULL, NULL);
+        snprintf(path, sizeof(path), "%s/%s/device/mem_info_vram_total",
+                 gpu->sysfs_drm_path, gpu->id);
+        g_file_get_contents(path, &total_s, NULL, NULL);
+
+        if (used_s) used = g_ascii_strtoull(used_s, NULL, 10);
+        if (total_s) total = g_ascii_strtoull(total_s, NULL, 10);
+
+        g_free(used_s);
+        g_free(total_s);
+
+        if (total > 0) {
+            if (used > total) used = total;
+            gchar *bar = vram_used_bar(used, total);
+            gchar *used_str = vram_format_size(used);
+            gchar *total_str = vram_format_size(total);
+            vram_str = g_strdup_printf("[%s]\n"
+                         /* VRAM */   "%s=%s | %s / %s\n",
+                        _("VRAM"),
+                        _("Used"), bar, used_str, total_str);
+            g_free(bar);
+            g_free(used_str);
+            g_free(total_str);
+        }
+    }
+
     gchar *mem_freq = g_strdup(_("(Unknown)"));
     if (gpu->mem_khz_max > 0) {
         if (gpu->mem_khz_min > 0 && gpu->mem_khz_min != gpu->mem_khz_max)
@@ -195,6 +261,7 @@ static void _gpu_pci_dev(gpud* gpu) {
                              "[%s]\n"
              /* Core freq */ "%s=%s\n"
              /* Mem freq */  "%s=%s\n"
+             /* VRAM */      "%s"
              /* NV */        "%s"
              /* PCIe */      "%s"
                              "[%s]\n"
@@ -210,6 +277,7 @@ static void _gpu_pci_dev(gpud* gpu) {
                 _("Clocks"),
                 _("Core"), freq,
                 _("Memory"), mem_freq,
+                vram_str,
                 nv_str,
                 pcie_str,
                 _("Driver"),
@@ -222,6 +290,7 @@ static void _gpu_pci_dev(gpud* gpu) {
     g_free(drm_path);
     g_free(pcie_str);
     g_free(nv_str);
+    g_free(vram_str);
     g_free(vendor_device_str);
     g_free(name);
     g_free(key);
